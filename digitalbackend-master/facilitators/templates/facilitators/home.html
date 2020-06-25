@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+ <meta charset="UTF-8">
+ <title> facilitator</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="{%static 'facilitators/facilitator.css' %}">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+ <script >
+   function getfocustxt(){
+     document.getElementById("name").focus();
+    
+   }
+ </script>
+ <style>
+  .imp:after {
+    content:" *";
+    color: red;
+  }
+</style>
+</head>
+<body onload="getfocustxt();">
+  <div class="container">
+      <h2>   WELCOME  </h2>
+    <p> You are 1 minute away from collaborating with us!</p>
+    <div class="img">
+      <img src="{%static 'facilitators/change.jpg' %}">
+    </div>
+  </div>
+  
+ <div class="wrapper">
+    <div class= "title">
+      BECOME A CHANGEMAKER 
+    </div>
+    <form method="post" id="form" enctype="multipart/form-data" >
+      {% csrf_token %}
+      <div class="form">
+      <div class="form-group">
+        <div class="col-md-6">
+           
+              <input type="text" name="tname" class="form-control" id="name"  placeholder="Name" required>  
+         </div>
+          <br>
+         <div class="col-md-4">
+             
+             <input type="email" name="temail" class="form-control" id="email" placeholder="Email"required="" >   
+         </div>
+     </div> 
+
+       <div class="form-group">
+         
+          <div class="col-md-6"> 
+
+               <input type="tel" class="input" name="tphone" placeholder="Mobile no"  id="phone"  pattern="^\d{10}$" required >
+            </div>
+       
+         <div class="col-md-4">
+            <input type="text" name="texp1" id="list" list="List" placeholder="Experience" size="20" style="height: 40px;"   required="" >
+           <datalist id="List">
+            <option value="3-6 yrs">  
+            <option value="6-10 yrs">
+            <option value="10+ yrs"> 
+           
+       </datalist>
+      </div>
+     </div>
+
+
+       <div class="form-group">
+    
+         <div class="col-md-6">  
+
+         
+              <input type="text" name="texp2" id="list2" list="List" placeholder="Training Experience" size="20" style="height: 40px;" required="">
+           <datalist id="List">
+            <option value="3-6 yrs">  
+            <option value="6-10 yrs">
+            <option value="10+ yrs">
+       </datalist>
+      </div>
+     
+        <div class="col-md-4">  
+
+        <input type="url" name="turl" id="list3" placeholder="LinkedIn Profile Link" pattern="^http(s)?:\/\/(www\.)?linkedin\.com\/in\/.*$" size="20" style="height: 40px;" >
+        
+       </div>
+      </div>
+       <div class="form-group">
+        
+         <div class="col-md-6">  
+               <label > Profile</label>
+               <input type="file"  id= "file" name="tprofile" title="Attach resume in doc/pdf format" accept=".pdf,.doc" required>
+       </div>
+
+         <div class="col-md-4">  
+              
+      <textarea rows="2"cols="2" maxlength="" name="q/s" id="textar" placeholder="Any Questions/Suggestions" size="40"></textarea>
+         </div>
+       </div>
+     <div class="submit">
+        <input type="submit" value="NEXT">
+    </div>
+   </div>
+</div>
+</form>
+</body>
+</html>
