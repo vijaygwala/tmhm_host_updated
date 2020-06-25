@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'OnlineLearning.urls'
+ROOT_URLCONF = 'tmhm_host.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'OnlineLearning.wsgi.application'
+WSGI_APPLICATION = 'tmhm_host.wsgi.application'
 
 
 # Database
