@@ -26,7 +26,7 @@ SECRET_KEY = '5w^7@844)#j4!=w*8_sd_mr(0!q42n3@3@)gab91r!opc32t^9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tranquil-fjord-39954.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['facilitator-formset.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
