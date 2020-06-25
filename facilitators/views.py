@@ -14,4 +14,4 @@ def home(request):
         tprofile=request.FILES['tprofile']
         trainer = Trainer(tname=tname,q_s=q_s,temail=temail,tphone=tphone,texp1=texp1,texp2=texp2,turl=turl,tprofile=tprofile)
         trainer.save()
-    return render(request,'facilitators/home.html')
+    return render(request,'facilitators/index.html')
