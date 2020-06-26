@@ -790,7 +790,7 @@
                         experienced tool with you. </p>
                     <hr style="background-color:#00ff2be0;height:2px;width:60px;">
                 </div>
-            </center>
+</center>
                 <!-- From here owl carousel starts -->
             <div class="owl-carousel owl-theme mt-4">
 
@@ -877,67 +877,68 @@
         </div>
     </div>
     <br>
-    
-    <div class="container-fluid">
-        <div class="row" style="background-color:#3791DF;background-size:cover"> 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="background-size:1400px;padding:30px">
-                <form method="post">
-                {% csrf_token %} 
-                <h1 style="color:white;font-size:39px;font-family:'Raleway';"> Request for a free </h1>
-                <h1 style="color:white;font-size:39px;font-family:'Raleway';"> online counselling </h1>
-                <input id="phone" type="tel" value="+91" placeholder="Phone Number" name="ocphone" style="height:50px;border-color:#89C2F3;background-color:#89C2F3;width:320px;padding:10px">
-                <br>
-                <button type="submit" class="btn btn-lg btn-primary" style="height:45px;background-color:#3386CE;width:190px;margin:5px 50px;border-radius:30px;font-family:'Raleway';font-size:26px;">Submit</button>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                <center><img src="{%static 'LandingPage/img/last1.png' %}" class="img-fluid" style="width:370px;height:270px"></center>
-            </div>
-        </form>
-        </div>
-    </div>
-    <br>
-    <!--Footer-->
-    <div class="container fluid">
-        <div class="row" style="text-align:left;font-family:'Raleway'">
-            <div class="col-lg-3" id="footer">
-                <h3 style="color:black;font-weight:bold"> Courses </h3>
-                <br>
-                <li> <a href='#' style="color:black">Regular courses<a /></li>
-                <li> <a href='#' style="color:black">Live classes<a /></li>
-                <li> <a href='#' style="color:black">Short term courses<a /></li>
-                <li> <a href='#' style="color:black">Workshops<a /></li>
-            </div>
-            <div class="col-lg-3" id="footer">
-                <h3 style="color:black;font-weight:bold"> Company </h3>
-                <br>
-                <li> <a href='#' style="color:black">About Us<a /></li>
-                <li> <a href='#' style="color:black">Our Team<a /></li>
-                <li> <a href='#' style="color:black">FAQs<a /></li>
-                <li> <a href='#' style="color:black">Partners<a /></li>
-                <li> <a href='#' style="color:black">Blog<a /></li>
-                <li> <a href='#' style="color:black">Terms and Conditions<a /></li>
-                <li> <a href='#' style="color:black">Privacy<a /></li>
-                <li> <a href='#' style="color:black">Help and Support<a /></li>
-                <li> <a href='#' style="color:black">Articles<a /></li>
-            </div>
-            <div class="col-lg-3" id="footer">
-                <h3 style="color:black;font-weight:bold"> Community </h3>
-                <br>
-                <li> <a href='#' style="color:black">Trainers<a /></li>
-                <li> <a href='#' style="color:black">Campus<a /></li>
-                <li> <a href='#' style="color:black">Corporates<a /></li>
-                <li> <a href='#' style="color:black">Business Partners<a /></li>
-            </div>
-            <div class="col-lg-3" id="footer">
-                <h3 style="color:black;font-weight:bold">Mobile App</h3>
-                <br> <br> <br> <br> <br> <br> <br>
-                <a href='#'> <img src="{%static 'LandingPage/img/logos.png' %}" style="width:25px;height:25px"><a />
-                    <a href='#'> <img src="{%static 'LandingPage/img/logotype.png' %}" style="width:25px;height:25px"><a />
-                        <a href='#'> <img src="{%static 'LandingPage/img/youtube.jpg' %}" style="width:25px;height:35px"><a />
-                            <a href='#'> <img src="{%static 'LandingPage/img/linkedin.png' %}" style="width:25px;height:25px"><a />
-                                <a href='#'> <img src="{%static 'LandingPage/img/wordpress.png' %}" style="width:25px;height:25px"><a />
-            </div>
-        </div>
+
+        <div class="container-fluid">
+			<div class="row" style="background-color:#3791DF;background-size:cover">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" id="request" style="background-size:1400px;padding-top:30px;padding-left:30px">
+					<h1 style="color:white;font-size:27.5px;font-family:'Raleway';padding-left:12px"> Request for a free </h1>
+					<h1 style="color:white;font-size:27px;font-family:'Raleway';padding-left:12px"> online counselling </h1>
+                    
+                    <form name="formvalidate" action=" " method="post" style="padding-left:12px" onSubmit="return check_phone(this)" >
+                        {% csrf_token %}
+                        <input type="text" class="input"  placeholder="+91"  name="yourphone" style="height:40px;font-size:16px;border-radius:5px;padding-left:15px;border-color:#89C2F3;background-color:#89C2F3;width:222px;">
+                        <button type="submit" class="btn btn-lg btn-primary" style="height:40px;background-color:#3386CE;
+                                                                            width:140px;margin:5px 37px;vertical-align:middle; 
+                                                                            display: inline-block;border-radius:30px;
+                                                                            font-family:'Raleway';font-size:23px;text-align:center">Submit</button>
+                        </form>
+                </div>
+						
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+					 <center><img src="{% static 'LandingPage/img/customer.png' %}"  class="img-fluid" style="width:300px;height:250px"></center>
+				</div>
+			</div>
+		</div>
+
+		<center>	
+            <div class="container-fluid">
+			    <div class="row" style="text-align:left;background-color:white;font-family:'Raleway';padding:10px;background-size:100% 100%">
+					<div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="footer" style="padding-left:30px">
+						<h4 style="font-family:'Raleway';color:black;">
+                        <img src="{% static 'LandingPage/img/logotiny.png' %}" style="width:34px;height:30px;">Digital TMHM </h4> <br>
+							 <a href='#'> <img src="{% static 'LandingPage/img/logos.png' %}" style="width:30px;height:30px;padding:3px"><a/>
+							 <a href='#'> <img src="{% static 'LandingPage/img/logotype.png' %}" style="width:30px;height:30px;padding:3px"><a/>
+							 <a href='#'> <img src="{% static 'LandingPage/img/youtube.jpg' %}" style="width:30px;height:30px;"><a/>
+							 <a href='#'> <img src="{% static 'LandingPage/img/linkedin.png' %}" style="width:30px;height:30px;padding:3px"><a/>
+							 <a href='#'> <img src="{% static 'LandingPage/img/wordpress.png' %}" style="width:30px;height:30px;padding:3px"><a/>
+							 <br>
+	                       <h6 style="font-family:'Raleway';font-color:black;">TMHM Company Pvt Ltd</h6>
+                    </div>
+
+					<div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="footer"  style="padding-left:30px">
+						<li> <a href='#' style="color:black;font-size:17px">About Us<a/></li>
+						<li> <a href='#' style="color:black;font-size:17px">Internships<a/></li>
+						<li> <a href='#' style="color:black;font-size:17px">Blog/Articles<a/></li>
+						<li> <a href='#' style="color:black;font-size:17px">Terms/Privacy<a/></li>
+		
+					</div>
+
+                    <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="footer"  style="padding-left:20px">
+                    <li> <a href='#' style="color:black;font-size:17px">Learners<a/></li>
+                    <li> <a href='#' style="color:black;font-size:17px">Facilitators<a/></li>
+                    <li> <a href='#' style="color:black;font-size:17px">Campus<a/></li>
+                    <li> <a href='#' style="color:black;font-size:17px">Corporates<a/></li>
+					</div>
+					
+                    <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="footer"  style="padding-left:20px">
+						<li> <a style="color:black;font-size:17px">Mobile App<a/></li>
+							<a href='#'><img src="{% statuc 'LandingPage/img/apple.png' %}" style="height:100px; width:150px"></a>
+                    </div>
+</div>
+<br>
+</div>
+ </center> 
 
         <!-- <script type="text/javascript" src="{%static 'LandingPage/js/jquey.min.js' %}"></script> -->
         <!-- <script type="text/javascript" src="{%static 'LandingPage/js/owl.carousel.js' %}"></script> -->
