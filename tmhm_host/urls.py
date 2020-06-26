@@ -21,7 +21,7 @@ from facilitators import views as fp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', lp.home),
+    path('', include('LandingPage.urls')),
     path('joinus/', fp.home),
 ] 
 #+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
