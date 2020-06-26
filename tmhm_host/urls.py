@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from django.conf import settings
+from LandingPage import views as lp
+from facilitators import views as fp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('LandingPage.urls')),
-    path('joinus/',include('facilitators.urls')),
+    path('home/', lp.home),
+    path('joinus/', fp.home),
 ] 
 #+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

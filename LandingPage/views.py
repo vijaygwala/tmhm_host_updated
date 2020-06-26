@@ -11,12 +11,10 @@ def home(request):
             phone=request.POST.get('phone','')
             poi=request.POST.get('poi','')
             name = f_name+' '+l_name
-            #print('signup')
             signup = Signup(name=name,city=city,email=email,phone=phone,Poi=poi)
             signup.save()
         if request.POST.get('ocphone'):
-            #print('working')
             phone = request.POST.get('ocphone','')
             councelling = OnlineCounselling(phone=phone)
             councelling.save()
-    return render(request,'LandingPage/home.html')
+    return render(request,'LandingPage/index.html')
