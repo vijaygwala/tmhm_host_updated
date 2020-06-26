@@ -290,9 +290,9 @@
                     </button>
                     <h2 class="head1 text-center">Login</h2>
 
-                    <center><button type="submit" class="btn btn1 mt-5" ><img src="img/icon.png">&nbsp;&nbsp;&nbsp;&nbsp;Login With Google</button></center>
+                    <center><button type="submit" class="btn btn1 mt-5" ><img src="{% static 'LandingPage/img/icon.png' %}">&nbsp;&nbsp;&nbsp;&nbsp;Login With Google</button></center>
 
-                    <p class="mt-5"><img src="img/line2.png">&nbsp;<b>OR</b>&nbsp;<img src="img/line2.png"></p>
+                    <p class="mt-5"><img src="img/line2.png">&nbsp;<b>OR</b>&nbsp;<img src="{% static 'LandingPage/img/line2.png' %}"></p>
                     <center><input type="email" class="form-control inp1 mt-3" id="emailorphone" placeholder="Enter your email id" style="outline:none" ></center>
 
                     <center><button type="submit" class="btn  mt-5 mb-4" style="background-image:  linear-gradient(to right, rgba(240,240,240), rgba(0, 128, 255));color: white;width:90%;padding: 10px;font-weight: 800;font-size: 18px;">Continue</button></center>
@@ -304,7 +304,10 @@
 	<div class="container-fluid">
 		<div class="row" >
 			<div class="col-lg-6" id="slide">
-		
+                <figure class="figure">
+                    <img src="{% static 'LandingPage/img/LandingSectionre.png' %}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+                </figure>
+                    
 					</div>
 					<div class="col-lg-6">
 						<br> <br> <br> <br>
