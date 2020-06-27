@@ -18,3 +18,7 @@ def home(request):
             councelling = OnlineCounselling(phone=phone)
             councelling.save()
     return render(request,'LandingPage/index.html')
+
+
+def home_page(request):
+    return render(request, 'LandingPage/index.html')

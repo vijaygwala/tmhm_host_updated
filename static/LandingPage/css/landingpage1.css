@@ -173,4 +173,6 @@
       line-height: 40px;
       text-align: center;
   }
-  
+ul { 
+    list-style-type: none; 
+}

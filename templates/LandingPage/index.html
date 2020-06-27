@@ -8,15 +8,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel='stylesheet' href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
-    <!-- <link rel="stylesheet" type="text/css" href="landing1 page.css"> 
-    <link rel='stylesheet' href="{%static 'LandingPage/css/LandingPage1.css' %}">
-    <link rel='stylesheet' type='text/css' href='style.css'> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
     <link rel="stylesheet" href="{%static 'LandingPage/css/owl.carousel.css' %}">
     <link rel="stylesheet" href="{%static 'LandingPage/css/owl.theme.default.min.css' %}">
     <style>
-    body {
-        font-family: 'Raleway';font-size: 22px;
+    body,html {
+        margin: 0;
+        padding: 0;
     }
     .item{
         background-color: white;
@@ -72,6 +69,42 @@
         margin-left: 30px;
         margin-right: 30px;
     }
+    .slider-area{
+        position: relative;
+        margin:0;
+    }
+    .carousel-control.left, .carousel-control.right{
+        background: transparent;
+    } 
+    .img-area{
+        margin: auto;
+        overflow: hidden;
+        align-items: center;
+    }
+    .img-area img{
+        height: 400px;
+        width: 500px;
+    }
+    .carousel-caption{
+        position: static;
+        padding-bottom: 15px;
+        padding-top: 0;
+    }
+    .carousel-caption h4{
+        font-size: 20px;
+    }
+    footer h6{
+        color: white;
+    }
+    footer a{
+        color: #ababab;
+    }
+    footer a:link{
+        text-decoration: none;
+    }
+    footer a:hover{
+        color: white;
+    }
     @media (max-width: 768px) {
         #first {
             /* (80px - line-height of 27px) / 2 = 26.5px */
@@ -118,9 +151,7 @@
             <a class="navbar-brand"></a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link text-center" style="color:#42AD75;
-        font-size: 18.5px;font-family: 'Raleway';
-        float: left;margin-left: 25px;" href="#" >Home</a>
+                    <a href="/home" class="nav-link text-center" style="color:#42AD75; font-size: 18.5px;float: left;margin-left: 25px;" href="#" >Home</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link text-center" style="color:#42AD75;
@@ -187,7 +218,7 @@
                             <!-- <label for="exampleInputPassword1">Phone</label> -->
                             <input type="text" class="form-control" value="" id="phone1" placeholder="+91">
                             </div>
-                            
+
                             <div class="form-group">
 
                             <input type="password" class="form-control" value="" id="pass1" placeholder="Password">
@@ -241,7 +272,7 @@
                         <label for="other">Other</label>
                             <button type="submit" class="btn mt-4" style="width: 100%;background: linear-gradient(to right, rgba(240,240,240), rgba(0, 128, 255));color: white;
                             font-weight: 800;font-size: 18px;" data-toggle="modal" data-target="#examp3" class="close" data-dismiss="modal" >Next</button>
-                        
+
                     </form>
                 </div>
             </div>
@@ -271,8 +302,8 @@
                                                 <input type="checkbox" class="check"> <label>Personal Development</label><br>
                                                 <input type="checkbox" class="check"> <label>Social Sciences</label><br>
                                                 <input type="checkbox" class="check"> <label>Language Learning</label>
-                                                </ul>		
-                                                
+                                                </ul>
+
                             <button type="submit" class="btn mt-4" style="width: 100%;background: linear-gradient(to right, rgba(240,240,240), rgba(0, 128, 255));color: white;
                             font-weight: 800;font-size: 18px; ">Register</button>
                                 <p class="hint mt-1" style="font-size:0.6em">By clicking on register now you agree to our terms and conditions</p>
@@ -311,7 +342,7 @@
                 <figure class="figure">
                     <img src="{% static 'LandingPage/img/LandingSectionre.png' %}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
                 </figure>
-                    
+
 					</div>
 					<div class="col-lg-6">
 						<br> <br> <br> <br>
@@ -355,7 +386,7 @@
 				</ul>
 			</div>
 		</nav>
-        
+
         <div class='container-fluid'>
             <div id='inam' class="carousel slide" data-ride='carousel'>
                 <ol class='carousel-indicators'>
@@ -542,7 +573,7 @@
             </div>
         </div>
         <br>
-        
+
 
         <div class="container-fluid mt-4">
             <center>
@@ -601,7 +632,7 @@
                 </center>
             <br>
 
-                <div class="row">   
+                <div class="row">
                     <div class="col-md-12 align-self-center" style="background-color:white">
                         <div class='container-fluid'>
                             <div id='inam' class="carousel slide" data-ride='carousel'>
@@ -619,8 +650,8 @@
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Arunima M</h5>
-                                                            <h6 style="color:grey;font-family:'Raleway'">Lead Consultant,IT</h6>
-                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">JP Morgan</p>
+                                                            <h6 style="color:#262626;font-size: 0.75em;">Lead Consultant,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">JP Morgan</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -629,8 +660,8 @@
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
-                                                            <h6 style="color:grey;font-family:'Raleway'">Professional product developer,IT</h6>
-                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">Accenture</p>
+                                                            <h6 style="color:#262626;font-size: 0.75em;">Professional product developer,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">Accenture</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -645,8 +676,8 @@
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Arunima M</h5>
-                                                            <h6 style="color:grey;font-family:'Raleway'">Lead Consultant,IT</h6>
-                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">JP Morgan</p>
+                                                            <h6 style="color:#262626;font-size: 0.75em;">Lead Consultant,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">JP Morgan</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -655,8 +686,8 @@
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
-                                                            <h6 style="color:grey;font-family:'Raleway'">Professional product developer,IT</h6>
-                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">Accenture</p>
+                                                            <h6 style="color:#262626;font-size: 0.75em;">Professional product developer,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">Accenture</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -671,8 +702,8 @@
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Arunima M</h5>
-                                                            <h6 style="color:grey;font-family:'Raleway'">Lead Consultant,IT</h6>
-                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">JP Morgan</p>
+                                                            <h6 style="color:#262626;font-size: 0.75em;">Lead Consultant,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">JP Morgan</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -681,20 +712,20 @@
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
-                                                            <h6 style="color:grey;font-family:'Raleway'">Professional product developer,IT</h6>
-                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">Accenture</p>
+                                                            <h6 style="color:#262626; font-size: 0.75em;">Professional product developer,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">Accenture</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                <!-- *********************************************************** -->
+                
                     <div class="col-md-12" style="background-color:white">
                         <div class='container-fluid'>
                             <div id='inam' class="carousel slide" data-ride='carousel'>
@@ -706,8 +737,6 @@
                                 <div class='carousel-inner'>
                                     <div class='carousel-item active'>
                                         <div class="container">
-                                           
-                                                
                                                 <img src="{%static 'LandingPage/img/amazon.webp' %}" width="65" height="65" style="margin:30px">
                                                 <img src="{% static 'LandingPage/img/adobe.png' %}" width="75" height="45" style="margin:32px">
                                                 <img src="{% static 'LandingPage/img/visa.png' %}" width="75" height="45" style="margin:32px">
@@ -717,13 +746,10 @@
                                                 <img src="{% static 'LandingPage/img/swiggy.png' %}" width="75" height="45" style="margin:30px">
                                                 <img src="{% static 'LandingPage/img/micro.webp' %}" width="75" height="45" style="margin:30px">
                                                 <img src="{% static 'LandingPage/img/company4.png' %}" width="75" height="45" style="margin:30px">
-                                            
                                         </div>
                                     </div>
                                     <div class='carousel-item'>
                                         <div class="container">
-                                            
-                                                
                                                 <img src="{% static 'LandingPage/img/amazon.webp' %}" width="65" height="65" style="margin:30px">
                                                 <img src="{% static 'LandingPage/img/adobe.png' %}" width="75" height="45" style="margin:32px">
                                                 <img src="{% static 'LandingPage/img/visa.png' %}" width="75" height="45" style="margin:32px">
@@ -733,13 +759,12 @@
                                                 <img src="{% static 'LandingPage/img/swiggy.png' %}" width="75" height="45" style="margin:30px">
                                                 <img src="{% static 'LandingPage/img/micro.webp' %}" width="75" height="45" style="margin:30px">
                                                 <img src="{% static 'LandingPage/img/company4.png' %}" width="75" height="45" style="margin:30px">
-                                            
                                         </div>
                                     </div>
                                     <div class='carousel-item'>
                                         <div class="container">
-                                          
-                                                
+
+
                                                 <img src="{% static 'LandingPage/img/amazon.webp' %}" width="65" height="65" style="margin:30px">
                                                 <img src="{% static 'LandingPage/img/adobe.png' %}" width="75" height="45" style="margin:32px">
                                                 <img src="{% static 'LandingPage/img/visa.png' %}" width="75" height="45" style="margin:32px">
@@ -749,16 +774,12 @@
                                                 <img src="{% static 'LandingPage/img/swiggy.png' %}" width="75" height="45" style="margin:30px">
                                                 <img src="{% static 'LandingPage/img/micro.webp' %}" width="75" height="45" style="margin:30px">
                                                 <img src="{% static 'LandingPage/img/company4.png' %}" width="75" height="45" style="margin:30px">
-                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-<!-- ****************************************************   -->
-                    
                 </div>
                 <br> <br>
             </section>
@@ -766,126 +787,130 @@
     </div>
     <br> <br>
 
-    <!-- ********************************************************************************************************** -->
-    <!-- ********************************************************************************************   -->
-    <!-- ********************************************************** Above Done -->
-    
-    <div class="container-fluid" style="background-color: #b3adade3">
+    <div class="container-fluid" style="background-color: #262626; max-height: 80%;">
         <div class="container1">
             <br>
-            <h1 class="text-center " style="color:white;font-size:50px;">Our Industry Partners</h1>
+            <h1 class="text-center " style="color: #9e9e9e;font-size:2.5em;">Our Industry Partners</h1>
             <center>
-                <div style="max-width: 800px">
-                    <p class="text-center text-justify text-light mt-4" style="font-size: 20
-                    px;margin:2px;">Our facilitators are industry experts in their respective category excited to share their experience,wisdom and
-                        experienced tool with you. </p>
-                    <hr style="background-color:#00ff2be0;height:2px;width:60px;">
-                </div>
-</center>
-                <!-- From here owl carousel starts -->
-                
-            <div class="owl-carousel owl-theme mt-4">
-
-                <div class="item">
-                    <img src="{% static 'LandingPage/img/liza3.jpg' %}" class="img-fluid">
-                    <center>
-                        <p style="font-size: 18px" class="mt-2 mb-3"><b>Jessica Hische</b></p>
-                        Illustrator
-                    </center>
-                </div>
-
-                <div class="item">
-                    <img src="{% static 'LandingPage/img/liza3.jpg' %}" class="img-fluid">
-                    <center>
-                        <p style="font-size: 18px" class="mt-2 mb-3"><b>Jessica Hische</b></p>
-                        Illustrator
-                    </center>
-                </div>
-
-                <div class="item">
-                    <img src="{% static 'LandingPage/img/liza3.jpg' %}" class="img-fluid">
-                    <center>
-                        <p style="font-size: 18px" class="mt-2 mb-3"><b>Jessica Hische</b></p>
-                        Illustrator
-                    </center>
-                </div>
-
-                <div class="item">
-                    <img src="{% static 'LandingPage/img/liza3.jpg' %}" class="img-fluid">
-                    <center>
-                        <p style="font-size: 18px" class="mt-2 mb-3"><b>Jessica Hische</b></p>
-                        Illustrator
-                    </center>
-                </div>
-
-                <div class="item">
-                    <img src="{% static 'LandingPage/img/liza3.jpg' %}" class="img-fluid">
-                    <center>
-                        <p style="font-size: 18px" class="mt-2 mb-3"><b>Jessica Hische</b></p>
-                        Illustrator
-                    </center>
-                </div>
-
-                <div class="item">
-                    <img src="{% static 'LandingPage/img/liza3.jpg' %}" class="img-fluid">
-                    <center>
-                        <p style="font-size: 18px" class="mt-2 mb-3"><b>Jessica Hische</b></p>
-                        Illustrator
-                    </center>
-                </div>
-
-                <div class="item">
-                    <img src="{% static 'LandingPage/img/liza3.jpg' %}" class="img-fluid">
-                    <center>
-                        <p style="font-size: 18px" class="mt-2 mb-3"><b>Jessica Hische</b></p>
-                        Illustrator
-                    </center>
-                </div>
-
-                <div class="item">
-                    <img src="{% static 'LandingPage/img/liza3.jpg' %}" class="img-fluid">
-                    <center>
-                        <p style="font-size: 18px" class="mt-2 mb-3"><b>Jessica Hische</b></p>
-                        Illustrator
-                    </center>
-                </div>
-
-                <div class="item">
-                    <img src="{% static 'LandingPage/img/liza3.jpg' %}" class="img-fluid">
-                    <center>
-                        <p style="font-size: 18px" class="mt-2 mb-3"><b>Jessica Hische</b></p>
-                        Illustrator
-                    </center>
-                </div>
-
-                <div class="item">
-                    <img src="{% static 'LandingPage/img/liza3.jpg' %}" class="img-fluid">
-                    <center>
-                        <p style="font-size: 18px" class="mt-2 mb-3"><b>Jessica Hische</b></p>
-                        Illustrator
-                    </center>
-                </div>
+            <div style="max-width: 100%">
+                <p class="text-center text-justify mt-2" style="font-size: 1.2rem; color: #bdbdbd;">Our facilitators are industry experts in their respective category excited to share their experience,wisdom and
+                    experienced tool with you. </p>
+                <hr style="background-color:#00ff2be0;height:2px;width:60px;">
             </div>
         </div>
-    </div>
-    <br>
+
+    
+    <div class="slider-area">
+        <div class="container">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="img-area">
+                            <img class="rounded mx-auto d-block" src="{% static 'LandingPage/img/liza3.jpg' %}" alt="First slide">
+                        </div>
+                        <div class="carousel-caption">
+                            <h4 class="mt-1">Jessica Hische</h4>
+                            <h4 class="mb-4">Illustrator</h4>
+                        </div>                 
+                    </div>
+                    <div class="carousel-item">
+                        <div class="img-area">
+                            <img class="rounded mx-auto d-block" src="{% static 'LandingPage/img/liza3.jpg' %}" alt="Second slide">
+                        </div>
+                        <div class="carousel-caption">
+                            <h4 class="mt-1">Jessica Hische</h4>
+                            <h4 class="mb-4">Illustrator</h4>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="img-area">
+                            <img class="rounded mx-auto d-block" src="{% static 'LandingPage/img/liza3.jpg' %}" alt="Third slide">
+                        </div>
+                        <div class="carousel-caption">
+                            <h4 class="mt-1">Jessica Hische</h4>
+                            <h4 class="mb-4">Illustrator</h4>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="img-area">
+                            <img class="rounded mx-auto d-block" src="{% static 'LandingPage/img/liza3.jpg' %}" alt="Fourth slide">
+                        </div>
+                        <div class="carousel-caption">
+                            <h4 class="mt-1">Jessica Hische</h4>
+                            <h4 class="mb-4">Illustrator</h4>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="img-area">
+                            <img class="rounded mx-auto d-block" src="{% static 'LandingPage/img/liza3.jpg' %}" alt="Fivth slide">
+                        </div>
+                        <div class="carousel-caption">
+                            <h4 class="mt-1">Jessica Hische</h4>
+                            <h4 class="mb-4">Illustrator</h4>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="img-area">
+                            <img class="rounded mx-auto d-block" src="{% static 'LandingPage/img/liza3.jpg' %}" alt="Sixth slide">
+                        </div>
+                        <div class="carousel-caption">
+                            <h4 class="mt-1">Jessica Hische</h4>
+                            <h4 class="mb-4">Illustrator</h4>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="img-area">
+                            <img class="rounded mx-auto d-block" src="{% static 'LandingPage/img/liza3.jpg' %}" alt="Third slide">
+                        </div>
+                        <div class="carousel-caption">
+                            <h4 class="mt-1">Jessica Hische</h4>
+                            <h4 class="mb-4">Illustrator</h4>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<!-- Footer -->
+
+
+
 
         <div class="container-fluid">
 			<div class="row" style="background-color:#3791DF;background-size:cover">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" id="request" style="background-size:1400px;padding-top:30px;padding-left:30px">
 					<h1 style="color:white;font-size:27.5px;font-family:'Raleway';padding-left:12px"> Request for a free </h1>
 					<h1 style="color:white;font-size:27px;font-family:'Raleway';padding-left:12px"> online counselling </h1>
-                    
+
                     <form name="formvalidate" action=" " method="post" style="padding-left:12px" onSubmit="return check_phone(this)" >
                         {% csrf_token %}
                         <input type="text" class="input"  placeholder="+91"  name="yourphone" style="height:40px;font-size:16px;border-radius:5px;padding-left:15px;border-color:#89C2F3;background-color:#89C2F3;width:222px;">
                         <button type="submit" class="btn btn-lg btn-primary" style="height:40px;background-color:#3386CE;
-                                                                            width:140px;margin:5px 37px;vertical-align:middle; 
+                                                                            width:140px;margin:5px 37px;vertical-align:middle;
                                                                             display: inline-block;border-radius:30px;
                                                                             font-family:'Raleway';font-size:23px;text-align:center">Submit</button>
                         </form>
                 </div>
-						
+
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
 					 <center><img src="{% static 'LandingPage/img/customer.png' %}"  class="img-fluid" style="width:300px;height:250px"></center>
@@ -893,7 +918,7 @@
 			</div>
 		</div>
 
-		<center>	
+		<center>
             <div class="container-fluid">
 			    <div class="row" style="text-align:left;background-color:white;font-family:'Raleway';padding:10px;background-size:100% 100%">
 					<div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="footer" style="padding-left:30px">
@@ -908,21 +933,8 @@
 	                       <h6 style="font-family:'Raleway';font-color:black;">TMHM Company Pvt Ltd</h6>
                     </div>
 
-					<div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="footer"  style="padding-left:30px">
-						<li> <a href='#' style="color:black;font-size:17px">About Us<a/></li>
-						<li> <a href='#' style="color:black;font-size:17px">Internships<a/></li>
-						<li> <a href='#' style="color:black;font-size:17px">Blog/Articles<a/></li>
-						<li> <a href='#' style="color:black;font-size:17px">Terms/Privacy<a/></li>
-		
-					</div>
-
-                    <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="footer"  style="padding-left:20px">
-                    <li> <a href='#' style="color:black;font-size:17px">Learners<a/></li>
-                    <li> <a href='#' style="color:black;font-size:17px">Facilitators<a/></li>
-                    <li> <a href='#' style="color:black;font-size:17px">Campus<a/></li>
-                    <li> <a href='#' style="color:black;font-size:17px">Corporates<a/></li>
-					</div>
 					
+
                     <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="footer"  style="padding-left:18px">
 						<li> <a style="color:black;font-size:17px">Mobile App<a/></li>
 							<a href='#'><img src="{% static 'LandingPage/img/apple.png' %}" style="height:100px; width:150px"></a>
@@ -930,40 +942,155 @@
 </div>
 <br>
 </div>
- </center> 
+ </center>
 
-        <!-- <script type="text/javascript" src="{%static 'LandingPage/js/jquey.min.js' %}"></script> -->
-        <!-- <script type="text/javascript" src="{%static 'LandingPage/js/owl.carousel.js' %}"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+<!-- Footer -->
+<footer class="page-footer font-small pt-4" style="background: #212121; color:#ababab;">
+    <div class="container text-center text-md-left">
+        <div class="row text-center text-md-left mt-3 pb-3" style="background-color: #1F1C1B;">
+
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-2 font-weight-bold">Company name</h6>
+                <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
+                <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+                consectetur
+                adipisicing elit.</p>
+            </div>
+                <hr class="w-100 clearfix d-md-none">
+
+        <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-2 font-weight-bold">Products</h6>
+                <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
+                <p>
+                <a href="#!">About Us</a>
+                </p>
+                <p>
+                <a href="#!">Internships</a>
+                </p>
+                <p>
+                <a href="#!">Blogs/Articles</a>
+                </p>
+                <p>
+                <a href="#!">Terms/Services</a>
+                </p>
+            </div>
+        <!-- Grid column -->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-2 font-weight-bold">Useful links</h6>
+                <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
+                <p>
+                <a href="#!">Learners</a>
+                </p>
+                <p>
+                <a href="/facilitator">Facilitators</a>
+                </p>
+                <p>
+                <a href="#!">Campus Ambassador</a>
+                </p>
+                <p>
+                <a href="#!">Corporates</a>
+                </p>
+            </div>
+
+        <!-- Grid column -->
+            <hr class="w-100 clearfix d-md-none">
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-2 font-weight-bold">Contact</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
+            <p>
+            <i class="fas fa-home mr-2"></i>Hyderabad</p>
+            <p>
+            <a href="mailto:tmhmindia@gmail.com"><i class="fas fa-envelope mr-2"></i>tmhmindia@gmail.com</p></a>
+            <p>
+            <a href="tel:+91 7234949596"><i class="fas fa-phone mr-2"></i>+91 7234949596</p></a>
+            <p>
+            <a href="tel:+91 7234949596"><i class="fas fa-print mr-2"></i>+91 7234949596</p></a>
+        </div>
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-2 font-weight-bold">Mobile App</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
+            <p>
+            <i class="fab fa-apple w3-large"></i> New York, NY 10012, US</p>
+            <p>
+        </div>
+
+    </div>
+        <!-- Footer links -->
+
+        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 100%; height: 1px; background-color: #3db166;">
+
+        <!-- Grid row -->
+        <div class="row d-flex align-items-center">
+
+        <!-- Grid column -->
+        <div class="col-md-7 col-lg-8">
+
+            <!--Copyright-->
+            <p class="text-center text-md-left">© 2020 Copyright:
+            <a href="https://mdbootstrap.com/">
+                <strong> TMHM India </strong>
+            </a>
+            </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-5 col-lg-4 ml-lg-0">
+
+            <!-- Social buttons -->
+            <div class="text-center text-md-right">
+            <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">
+                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                </li>
+                <li class="list-inline-item">
+                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                </li>
+                <li class="list-inline-item">
+                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-google-plus-g"></i>
+                </a>
+                </li>
+                <li class="list-inline-item">
+                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                </li>
+            </ul>
+            </div>
+
+        </div>
+        <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+</footer>
+
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/da956b6924.js" crossorigin="anonymous"></script>
-        
-        <script type='text/javascript' src="{% static 'LandingPage/js/categories.js' %}">
-            window.onscroll = function()
-                {scrollFunction()};
-         </script>
+
 
         <script>
-            $('.owl-carousel').owlCarousel({
-                loop:true,
-                margin:10,
-                nav:true,
-                pagination:false,
-                autoplay:500,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:4
-                    },
-                    1000:{
-                        items:5
-                    }
-                }
-            });
 
             function check_phone(phno){
                 var regex = /^\(?\d{3}\)?-?\s*-?\d{4}$/;
