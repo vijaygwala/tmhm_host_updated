@@ -72,12 +72,16 @@
         margin-left: 30px;
         margin-right: 30px;
     }
-    @media (min-width: 768px) {
+    @media (max-width: 768px) {
         #first {
             /* (80px - line-height of 27px) / 2 = 26.5px */
             padding-top: 2px;
             padding-bottom: 2px;
             line-height: 12px;
+        }
+        .container-fluid{
+            padding-left: 0 !important;
+            padding-right: 0 !important;
         }
     }
     @media only screen and (max-width: 1000px){
@@ -258,7 +262,7 @@
                                 <h2 class="head mb-4" >Course Categories</h2>
                                         <ul style="text-align:left;font-size:15px">
                                                 <input type="checkbox" class="check"><label>Arts and Humanities</label><br>
-                                                    <input type="checkbox" class="check"> <label>Marketing/Business</label><br>
+                                                <input type="checkbox" class="check"> <label>Marketing/Business</label><br>
                                                 <input type="checkbox" class="check"> <label>Computer Science</label><br>
                                                 <input type="checkbox" class="check"> <label>Data Science</label><br>
                                                 <input type="checkbox" class="check"> <label>Information Technology</label><br>
@@ -596,9 +600,9 @@
                     <h2 style="color:black;font-family:'Raleway'"> Where our alumni work? </h2>
                 </center>
             <br>
-                <div class="row">
-                <!-- ------------------------------------ -->
-                    <div class="col-md-12 offset-1 col-sm-offset-0" style="background-color:white">
+
+                <div class="row">   
+                    <div class="col-md-12 align-self-center" style="background-color:white">
                         <div class='container-fluid'>
                             <div id='inam' class="carousel slide" data-ride='carousel'>
                                 <ol class='carousel-indicators'>
@@ -611,29 +615,23 @@
                                         <div class='container'>
                                             <div class='row'>
                                                 <div class='col-md-6 col-sm-12 text-center mb-2'>
-                                                    <div class='card col-md-8' style="min-width: 10em;">
-                                                        
-                                                        <center> <img src="{% static 'LandingPage/img/sa.png' %}" style="width:250px; height:250px;"></center>
-                                                        <center>
-                                                            <h5 style="color:red;font-family:'Raleway'">Arunima M</h5>
-                                                        </center>
-                                                        
-                                                        <center>
+                                                    <div class="card" style="width: 15em;">
+                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="color:red;">Arunima M</h5>
                                                             <h6 style="color:grey;font-family:'Raleway'">Lead Consultant,IT</h6>
-                                                        </center> 
-                                                        <p style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">JP Morgan</p>
+                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">JP Morgan</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class='col-md-6 col-sm-12 text-center'>
-                                                    <div class='card col-md-8' style="min-width: 10em;">
-                                                        <center> <img src="{% static 'LandingPage/img/sa.png' %}" style="width:250px; height:250px;"></center>
-                                                        <center>
-                                                            <h5 style="color:red;font-family:'Raleway'">Dhruv Goswami</h5>
-                                                        </center>
-                                                        <center>
+                                                    <div class='card' style="width: 15em">
+                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
                                                             <h6 style="color:grey;font-family:'Raleway'">Professional product developer,IT</h6>
-                                                        </center>
-                                                        <p style="background:#F5F5F5;padding:30px;margin:15px 15px;font-family:'Raleway';font-size:18px;">Accenture</p>
+                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">Accenture</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -642,32 +640,24 @@
                                     <div class='carousel-item'>
                                         <div class='container'>
                                             <div class='row'>
-                                                <div class='col-sm-12 col-md-6 text-center mb-2'>
-                                                    <div class='card col-md-8' style="min-width: 10em;">
-                                                        
-                                                        <center> <img src="{% static 'LandingPage/img/sa.png' %}" style="width:250px; height:250px;"></center>
-                                                        <center>
-                                                            <h5 style="color:red;font-family:'Raleway'">Arunima M</h5>
-                                                        </center>
-                                                        
-                                                        <center>
+                                                <div class='col-md-6 col-sm-12 text-center mb-2'>
+                                                    <div class="card" style="width: 15em;">
+                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="color:red;">Arunima M</h5>
                                                             <h6 style="color:grey;font-family:'Raleway'">Lead Consultant,IT</h6>
-                                                        </center>
-                                                        <p style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">JP Morgan</p>
+                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">JP Morgan</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class='col-sm-12 col-md-6 text-center'>
-                                                    <div class='card col-md-8' style="min-width: 10em;">
-                                                        
-                                                        <center> <img src="{% static 'LandingPage/img/sa.png' %}" style="width:250px; height:250px;"></center>
-                                                        <center>
-                                                            <h5 style="color:red;font-family:'Raleway'">Dhruv Goswami</h5>
-                                                        </center>
-                                                        </center>
-                                                        <center>
+                                                <div class='col-md-6 col-sm-12 text-center'>
+                                                    <div class='card' style="width: 15em">
+                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
                                                             <h6 style="color:grey;font-family:'Raleway'">Professional product developer,IT</h6>
-                                                        </center>
-                                                        <p style="background:#F5F5F5;padding:30px;;font-family:'Raleway';font-size:18px;margin:15px 15px;">Accenture</p>
+                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">Accenture</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -676,35 +666,26 @@
                                     <div class='carousel-item'>
                                         <div class='container'>
                                             <div class='row'>
-                                                <div class='col-sm-12 col-md-6 text-center mb-2'>
-                                                    <div class='card col-md-8' style="min-width: 10em;">
-                                                        
-                                                        <center> <img src="{% static 'LandingPage/img/sa.png' %}" style="width:250px; height:250px;"></center>
-                                                        <center>
-                                                            <h5 style="color:red;;font-family:'Raleway'">Arunima M</h5>
-                                                        </center>
-                                                        
-                                                        <center>
-                                                            <h6 style="color:grey;;font-family:'Raleway'">Lead Consultant,IT</h6>
-                                                        </center>
-                                                        <p style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">JP Morgan</p>
+                                                <div class='col-md-6 col-sm-12 text-center mb-2'>
+                                                    <div class="card" style="width: 15em;">
+                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="color:red;">Arunima M</h5>
+                                                            <h6 style="color:grey;font-family:'Raleway'">Lead Consultant,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">JP Morgan</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class='col-sm-12 col-md-6 text-center'>
-                                                    <div class='card col-md-8' style="min-width: 10em;">
-                                                        
-                                                        <center> <img src="{% static 'LandingPage/img/sa.png' %}" style="width:250px; height:250px;"></center>
-                                                        <center>
-                                                            <h5 style="color:red;;font-family:'Raleway'">Dhruv Goswami</h5>
-                                                        </center>
-                                                        <center>
-                                                            <h6 style="color:grey;;font-family:'Raleway'">Professional product developer, IT</h6>
-                                                        </center>
-                                                        <p style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px;">Accenture</p>
+                                                <div class='col-md-6 col-sm-12 text-center'>
+                                                    <div class='card' style="width: 15em">
+                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
+                                                            <h6 style="color:grey;font-family:'Raleway'">Professional product developer,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;font-family:'Raleway';font-size:18px;padding:30px;margin:15px 15px">Accenture</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-
                                             </div>
                                         </div>
                                     </div>
