@@ -937,30 +937,32 @@
 </div>
 
 <!-- Footer -->
-<div class="mt-3"></div>
+<div style="margin-top: 5em;"></div>
         <div class="container-fluid">
-			<div class="row" style="background-color:#3791DF;background-size:cover">
-				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" id="request" style="background-size:1400px;padding-top:30px;padding-left:30px">
-					<h1 style="color:white;font-size:27.5px;font-family:'Raleway';padding-left:12px"> Request for a free </h1>
-					<h1 style="color:white;font-size:27px;font-family:'Raleway';padding-left:12px"> online counselling </h1>
-
-                    <form name="formvalidate" action=" " method="post" style="padding-left:12px" onSubmit="return check_phone(this)" >
-                        {% csrf_token %}
-                        <input type="text" class="input"  placeholder="+91"  name="yourphone" style="height:40px;font-size:16px;border-radius:5px;padding-left:15px;border-color:#89C2F3;background-color:#89C2F3;width:222px;">
-                        <button type="submit" class="btn btn-lg btn-primary" style="height:40px;background-color:#3386CE;
-                                                                            width:140px;margin:5px 37px;vertical-align:middle;
-                                                                            display: inline-block;border-radius:30px;
-                                                                            font-family:'Raleway';font-size:23px;text-align:center">Submit</button>
-                        </form>
-                </div>
-</div>
-</div>
-
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-					 <center><img src="{% static 'LandingPage/img/customer.png' %}"  class="img-fluid" style="width:300px;height:250px"></center>
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+					<center><img src="{% static 'LandingPage/img/customer.png' %}"  class="img-fluid" style="width:350px;height:350px"></center>
 				</div>
+                <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 mt-4" id="request" style="background-size:1400px;padding-top:30px;padding-left:30px">
+					<div class="col-md-6">
+                        <h2>Request for a free <br> Online Councelling</h2>
+                        <form action=" " method="post" onSubmit="return check_phone(this)" >
+                            {% csrf_token %}
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <div class="input-group mb-3 mt-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">+91</span>
+                                    </div>
+                                <input type="tel" class="form-control" name="yourphone" placeholder="PhoneNumber" aria-label="PhoneNumber" aria-describedby="basic-addon1">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="mb-3"></div>                
+<div style="margin-bottom: 5em;"></div>               
 <!-- Footer -->
 <footer class="page-footer font-small pt-4">
     <div class="container text-center text-md-left">
@@ -1107,7 +1109,7 @@
         <script>
 
             function check_phone(phno){
-                var regex = /^\(?\d{3}\)?-?\s*-?\d{4}$/;
+                var regex = /^[0-9]{10}$/;
                 if(regex.test(phno.yourphone.value)){
                     return true;
                     } else {
