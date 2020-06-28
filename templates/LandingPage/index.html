@@ -93,6 +93,22 @@
     .carousel-caption h4{
         font-size: 20px;
     }
+    #navbar-left a{
+        text-decoration: none;
+        color: #ababab;
+    }
+    #navbar-left a:hover{
+        color: white;
+    }
+    #navbar-left button{
+        color: white;
+    }
+    footer{
+        background: #1F1C1B; 
+        color:#ababab;
+        font-size: 13px;
+        line-height: 1.2
+    }
     footer h6{
         color: white;
     }
@@ -105,9 +121,17 @@
     footer a:hover{
         color: white;
     }
+    footer #social i{
+        color: #3db166;
+    }
+    footer #social i:hover{
+        color: white;
+    }
     @media (max-width: 768px) {
+        #navbar-left{
+            display: block;
+        }
         #first {
-            /* (80px - line-height of 27px) / 2 = 26.5px */
             padding-top: 2px;
             padding-bottom: 2px;
             line-height: 12px;
@@ -134,7 +158,7 @@
 
     @media only screen and (max-width: 1080px){
         #footer{
-            text-align: center;
+            text-align: left !important;
         }
     }
     </style>
@@ -142,44 +166,50 @@
 
 <body>
 
-    <img src="{% static 'LandingPage/img/logotiny.png' %}" id="logo" style="margin-left:52px;padding:5px" >
-    <nav class="navbar navbar-expand-lg navbar-light" id="first" style="background:#E8E8E8;">
-        <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-2 mb-2">
+            <img src="{% static 'LandingPage/img/logotiny.png' %}" id="logo" style="margin-left:52px;padding:5px">
+        </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/home">Digital TMHM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
-            <a class="navbar-brand"></a>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="/home" class="nav-link text-center" style="color:#42AD75; font-size: 18.5px;float: left;margin-left: 25px;" href="#" >Home</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link text-center" style="color:#42AD75;
-        font-size: 18px;font-family: 'Raleway';
-        float: left;margin-left: 25px;" href="#" >Categories <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-center" style="color:#42AD75;
-        font-size: 18px;font-style: 'Raleway';
-        float: left;margin-left: 25px;" href="#" data-toggle="modal" data-target="#exampl">FREE Content</a>
+                    <a class="nav-link" href="#">Categories</a>
                 </li>
-
-        </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item" id="login">	<form class="form-inline">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="margin-left:25px">
-                </form>
-            </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:#42AD75;
-        font-size: 18px;font-family: 'Raleway';
-        float: left;margin-left: 25px;margin-top:5px" href="#"  data-toggle="modal" data-target="#exampleModal">Login</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#exampl">
+                    Free Content
+                    </a>
                 </li>
-    <li class="nav-item">
-            <button class="btn btn-outline-success my-3 my-sm-0" data-toggle="modal" data-target="#exampl" style="margin-left: 25px;margin-right:0;font-size:18px;background:#33CABB;border:#33CABB;font-family:'Raleway';width:120px;height:40px;color:white" type="submit">Sign Up</button>
-    </li>
-    </ul>
+            </ul>
 
+            <ul class="nav justify-content-end text-sm-left" id="navbar-left">
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0">
+                        {% csrf_token %}
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">Login</a>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary rounded" data-toggle="modal" data-target="#exampl" type="submit">Sign Up</button>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -633,7 +663,7 @@
             <br>
 
                 <div class="row">
-                    <div class="col-md-12 align-self-center" style="background-color:white">
+                    <div class="col-md-12 offset-1" style="background-color:white">
                         <div class='container-fluid'>
                             <div id='inam' class="carousel slide" data-ride='carousel'>
                                 <ol class='carousel-indicators'>
@@ -646,7 +676,7 @@
                                         <div class='container'>
                                             <div class='row'>
                                                 <div class='col-md-6 col-sm-12 text-center mb-2'>
-                                                    <div class="card" style="width: 15em;">
+                                                    <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Arunima M</h5>
@@ -656,7 +686,7 @@
                                                     </div>
                                                 </div>
                                                 <div class='col-md-6 col-sm-12 text-center'>
-                                                    <div class='card' style="width: 15em">
+                                                    <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
@@ -672,7 +702,7 @@
                                         <div class='container'>
                                             <div class='row'>
                                                 <div class='col-md-6 col-sm-12 text-center mb-2'>
-                                                    <div class="card" style="width: 15em;">
+                                                    <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Arunima M</h5>
@@ -682,7 +712,7 @@
                                                     </div>
                                                 </div>
                                                 <div class='col-md-6 col-sm-12 text-center'>
-                                                    <div class='card' style="width: 15em">
+                                                    <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
@@ -698,7 +728,7 @@
                                         <div class='container'>
                                             <div class='row'>
                                                 <div class='col-md-6 col-sm-12 text-center mb-2'>
-                                                    <div class="card" style="width: 15em;">
+                                                    <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Arunima M</h5>
@@ -708,7 +738,7 @@
                                                     </div>
                                                 </div>
                                                 <div class='col-md-6 col-sm-12 text-center'>
-                                                    <div class='card' style="width: 15em">
+                                                    <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
@@ -725,7 +755,7 @@
                             </div>
                         </div>
                     </div>
-                
+                <!--
                     <div class="col-md-12" style="background-color:white">
                         <div class='container-fluid'>
                             <div id='inam' class="carousel slide" data-ride='carousel'>
@@ -780,6 +810,7 @@
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
                 <br> <br>
             </section>
@@ -891,10 +922,6 @@
 </div>
 
 <!-- Footer -->
-
-
-
-
         <div class="container-fluid">
 			<div class="row" style="background-color:#3791DF;background-size:cover">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" id="request" style="background-size:1400px;padding-top:30px;padding-left:30px">
@@ -910,55 +937,25 @@
                                                                             font-family:'Raleway';font-size:23px;text-align:center">Submit</button>
                         </form>
                 </div>
-
+</div>
+</div>
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
 					 <center><img src="{% static 'LandingPage/img/customer.png' %}"  class="img-fluid" style="width:300px;height:250px"></center>
 				</div>
-			</div>
-		</div>
-
-		<center>
-            <div class="container-fluid">
-			    <div class="row" style="text-align:left;background-color:white;font-family:'Raleway';padding:10px;background-size:100% 100%">
-					<div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="footer" style="padding-left:30px">
-						<h4 style="font-family:'Raleway';color:black;">
-                        <img src="{% static 'LandingPage/img/logotiny.png' %}" style="width:34px;height:30px;">Digital TMHM </h4> <br>
-							 <a href='#'> <img src="{% static 'LandingPage/img/logos.png' %}" style="width:30px;height:30px;padding:3px"><a/>
-							 <a href='#'> <img src="{% static 'LandingPage/img/logotype.png' %}" style="width:30px;height:30px;padding:3px"><a/>
-							 <a href='#'> <img src="{% static 'LandingPage/img/youtube.jpg' %}" style="width:30px;height:30px;"><a/>
-							 <a href='#'> <img src="{% static 'LandingPage/img/linkedin.png' %}" style="width:30px;height:30px;padding:3px"><a/>
-							 <a href='#'> <img src="{% static 'LandingPage/img/wordpress.png' %}" style="width:30px;height:30px;padding:3px"><a/>
-							 <br>
-	                       <h6 style="font-family:'Raleway';font-color:black;">TMHM Company Pvt Ltd</h6>
-                    </div>
-
-					
-
-                    <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="footer"  style="padding-left:18px">
-						<li> <a style="color:black;font-size:17px">Mobile App<a/></li>
-							<a href='#'><img src="{% static 'LandingPage/img/apple.png' %}" style="height:100px; width:150px"></a>
-                    </div>
-</div>
-<br>
-</div>
- </center>
-
 <!-- Footer -->
-<footer class="page-footer font-small pt-4" style="background: #212121; color:#ababab;">
+<footer class="page-footer font-small pt-4">
     <div class="container text-center text-md-left">
-        <div class="row text-center text-md-left mt-3 pb-3" style="background-color: #1F1C1B;">
+        <div class="row text-center text-md-left mt-3 pb-3" style="background: transparent;">
 
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                 <h6 class="text-uppercase mb-2 font-weight-bold">Company name</h6>
                 <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
-                <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                consectetur
-                adipisicing elit.</p>
+                <p><img src="{% static 'LandingPage/img/logotiny.png' %}" style="width: 30px; height: 30px;"> Digital TMHM</p>
             </div>
                 <hr class="w-100 clearfix d-md-none">
 
-        <!-- Grid column -->
+       
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                 <h6 class="text-uppercase mb-2 font-weight-bold">Products</h6>
                 <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
@@ -975,11 +972,11 @@
                 <a href="#!">Terms/Services</a>
                 </p>
             </div>
-        <!-- Grid column -->
+        
 
         <hr class="w-100 clearfix d-md-none">
 
-        <!-- Grid column -->
+       
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                 <h6 class="text-uppercase mb-2 font-weight-bold">Useful links</h6>
                 <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
@@ -997,10 +994,10 @@
                 </p>
             </div>
 
-        <!-- Grid column -->
+        
             <hr class="w-100 clearfix d-md-none">
 
-        <!-- Grid column -->
+        
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
             <h6 class="text-uppercase mb-2 font-weight-bold">Contact</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
@@ -1013,41 +1010,39 @@
             <p>
             <a href="tel:+91 7234949596"><i class="fas fa-print mr-2"></i>+91 7234949596</p></a>
         </div>
-        <!-- Grid column -->
+        
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
             <h6 class="text-uppercase mb-2 font-weight-bold">Mobile App</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
             <p>
-            <i class="fab fa-apple w3-large"></i> New York, NY 10012, US</p>
+            <a href="https://www.apple.com/ios/app-store/"><i class="fab fa-apple mr-1" style="font-size: 20px;"></i> Apple Store</a>
+            </p>
             <p>
+            <a href="https://play.google.com/store"><img class="mr-1" src="{% static 'LandingPage/img/play-store.svg' %}" width="20px" height="20px"> Google Play Store</a>
+            </p>
         </div>
 
     </div>
-        <!-- Footer links -->
+       
 
-        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 100%; height: 1px; background-color: #3db166;">
+        <hr class="mb-4 mt-0 d-inline-block mx-auto text-sm-lef" style="width: 100%; height: 1px; background-color: #3db166;">
 
-        <!-- Grid row -->
+       
         <div class="row d-flex align-items-center">
 
-        <!-- Grid column -->
+       
         <div class="col-md-7 col-lg-8">
 
-            <!--Copyright-->
-            <p class="text-center text-md-left">© 2020 Copyright:
+            
+            <p class="text-center text-md-left text-sm-left">© 2020 Copyright:
             <a href="https://mdbootstrap.com/">
-                <strong> TMHM India </strong>
+                <strong> TMHM Company Pvt.Ltd </strong>
             </a>
             </p>
 
         </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
         <div class="col-md-5 col-lg-4 ml-lg-0">
-
-            <!-- Social buttons -->
-            <div class="text-center text-md-right">
+            <div class="text-center text-md-right text-sm-left" id="social">
             <ul class="list-unstyled list-inline">
                 <li class="list-inline-item">
                 <a class="btn-floating btn-sm rgba-white-slight mx-1">
@@ -1056,12 +1051,12 @@
                 </li>
                 <li class="list-inline-item">
                 <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
                 </a>
                 </li>
                 <li class="list-inline-item">
                 <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                    <i class="fab fa-google-plus-g"></i>
+                    <i class="fab fa-wordpress-simple"></i>
                 </a>
                 </li>
                 <li class="list-inline-item">
@@ -1069,17 +1064,18 @@
                     <i class="fab fa-linkedin-in"></i>
                 </a>
                 </li>
+                <li class="list-inline-item">
+                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                </li>
             </ul>
             </div>
 
         </div>
-        <!-- Grid column -->
 
         </div>
-        <!-- Grid row -->
-
     </div>
-    <!-- Footer Links -->
 
 </footer>
 
