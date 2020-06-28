@@ -11,11 +11,19 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
+#import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+'''
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+'''
+# By Vijay
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
+STATIC_DIR=os.path.join(BASE_DIR,'static')
+#MEDIA_ROOT=os.path.join(BASE_DIR,'static/img')
+# endvijay
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -32,6 +40,10 @@ ALLOWED_HOSTS = ['facilitator-formset.herokuapp.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    # By vijay
+    'admin_interface',
+    'colorfield',
+    # endVijay
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +52,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'LandingPage.apps.LandingpageConfig',
     'facilitators.apps.FacilitatorsConfig',
+    'django.contrib.sites',
+    # By vijay
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    # endVijay
 ]
+# for go
+# By vijay
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+X_FRAME_OPTIONS='SAMEORIGIN'
+# endvijay
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,6 +97,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'tmhm_host.wsgi.application'
+# By vijay
+''' for google authentication integration '''
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+]
+# endVijay
 
 
 # Database
@@ -103,6 +140,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# By Vijay
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+            ],
+
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+# endVijay
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -120,17 +171,28 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_TMP = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_TMP = os.path.join(BASE_DIR, 'static')
+#STATIC_URL = '/static/'
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # managing media files
-#MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 #MEDIA_URL = '/media/'
 
-os.makedirs(STATIC_TMP, exist_ok=True)
-os.makedirs(STATIC_ROOT, exist_ok=True)
+#os.makedirs(STATIC_TMP, exist_ok=True)
+#os.makedirs(STATIC_ROOT, exist_ok=True)
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
+
+# By Vijay
+#STATIC_URL = '/static/'
+#MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+#MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS=[STATIC_DIR,]
+#MEDIA_URL='/img/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+
+# end Vijay

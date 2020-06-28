@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+{% load socialaccount %}
+
+
 <html>
 {% load static %}
 
@@ -218,12 +221,16 @@
                         <button class="btn my-sm-0" type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </li>
+                {% if user.is_authenticated %}
+                    <li><p class="text-white">Welcome, {{ user.username }} !</p></li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">Login</a>
                 </li>
                 <li class="nav-item">
                     <button class="btn btn-primary rounded" data-toggle="modal" data-target="#exampl" type="submit">Sign Up</button>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -370,7 +377,7 @@
                     </button>
                     <h2 class="head1 text-center">Login</h2>
 
-                    <center><button type="submit" class="btn btn1 mt-5" ><img src="{% static 'LandingPage/img/icon.png' %}">&nbsp;&nbsp;&nbsp;&nbsp;Login With Google</button></center>
+                    <center><a href="{% provider_login_url 'google' %}" class="btn btn1 mt-5"><img src="{% static 'LandingPage/img/icon.png' %}">&nbsp;&nbsp;&nbsp;&nbsp;Login With Google</a></center>
 
                     <p class="mt-5"><img src="{% static 'LandingPage/img/line2.png' %}">&nbsp;<b>OR</b>&nbsp;<img src="{% static 'LandingPage/img/line2.png' %}"></p>
                     <center><input type="email" class="form-control inp1 mt-3" id="emailorphone" placeholder="Enter your email id" style="outline:none" ></center>

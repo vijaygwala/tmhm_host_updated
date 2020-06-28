@@ -2,7 +2,12 @@ from django.shortcuts import render
 from .models import Signup,OnlineCounselling
 # Create your views here.
 def home(request):
-    if request.method=='POST':
+    return render(request,'LandingPage/index.html')
+
+
+def home_page(request):
+    pass
+    '''if request.method=='POST':
         if request.POST.get("f_name"):
             f_name=request.POST.get('f_name','')
             l_name=request.POST.get('l_name','')
@@ -17,8 +22,4 @@ def home(request):
             phone = request.POST.get('ocphone','')
             councelling = OnlineCounselling(phone=phone)
             councelling.save()
-    return render(request,'LandingPage/index.html')
-
-
-def home_page(request):
-    return render(request, 'LandingPage/index.html')
+    return render(request, 'LandingPage/index.html')'''
