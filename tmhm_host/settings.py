@@ -196,3 +196,10 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static'),]
 MEDIA_URL = '/img/'
 
 # end Vijay
+
+# By vijay
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+#end vijay
