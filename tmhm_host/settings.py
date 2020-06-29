@@ -21,8 +21,8 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # By Vijay
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
-STATIC_DIR=os.path.join(BASE_DIR,'static')
-#MEDIA_ROOT=os.path.join(BASE_DIR,'static/img')
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
+MEDIA_ROOT=os.path.join(BASE_DIR,'static/img')
 # endvijay
 
 # Quick-start development settings - unsuitable for production
@@ -190,9 +190,9 @@ USE_TZ = True
 #MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 #MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[STATIC_DIR,]
+#STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static'),]
 #MEDIA_URL='/img/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/img/'
 
 # end Vijay
