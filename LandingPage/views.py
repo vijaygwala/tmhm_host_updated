@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Signup,OnlineCounselling
+from .models import OnlineCounselling
 # Create your views here.
 def home(request):
     return render(request,'LandingPage/index.html')
@@ -23,3 +23,6 @@ def home_page(request):
             councelling = OnlineCounselling(phone=phone)
             councelling.save()
     return render(request, 'LandingPage/index.html')'''
+
+def signup(request):
+    return render(request, 'LandingPage/signup.html')

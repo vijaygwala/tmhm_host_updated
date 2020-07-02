@@ -1,734 +1,269 @@
 <!DOCTYPE html>
-<html>
 {% load static %}
-<head>
- <title> facilitator</title>
- <meta charset="UTF-8">
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-<style>
-  body {
-    margin: 0px;
-    padding: 0px;
-  }
-  form{
-      position: relative;
-  }
-  .card, .card-header{
-    background-color: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin-bottom: 10px;
-  }
-  .card {
-    box-shadow: 0 2px 25px rgba(110, 130, 208, 0.18);
-  }
-  .card-body{
-    background: #e8eeff;
-    padding-top: 0.5rem;
-    padding-right: 1rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-  }
-  .btn-link{
-    width: 100%;
-    height: 45px;
-    color: #000;
-    font-weight: bold;
-    text-align: left;
-  }
-  .btn-link:after{
-    content: '\2212';
-    width: 35px;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 5px;
-    right: 15px;
-    top: 11px;
-    position: absolute;
-    background: #e8eeff
-  }
-  .btn-link.collapsed:after{
-    content: '\002B';
-  }
-.form-bottom {
-    transition: all .4s ease-in-out;
-}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Facilitator</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  <body>
 
-form.registration-form fieldset {
-    display: none;
-} 
-/* 
-#progressbar {
-    margin-bottom: 30px;
-    overflow: hidden;
-    /*CSS counters to number the steps*/
-    counter-reset: step;
-}
-
-#progressbar li {
-    list-style-type: none;
-    color: white;
-    text-transform: uppercase;
-    font-size: 9px;
-    width: 25%;
-    float: left;
-    position: relative;
-    letter-spacing: 1px;
-}
-
-#progressbar li:before {
-    content: counter(step);
-    counter-increment: step;
-    width: 24px;
-    height: 24px;
-    line-height: 26px;
-    display: block;
-    font-size: 12px;
-    color: #333;
-    background: white;
-    border-radius: 25px;
-    margin: 0 auto 10px auto;
-}
-#progressbar li:after {
-    content: '';
-    width: 100%;
-    height: 2px;
-    background: white;
-    position: absolute;
-    left: -50%;
-    top: 9px;
-    z-index: -1; /*put it behind the numbers*/
-}
-
-#progressbar li:first-child:after {
-    /*connector not needed before the first step*/
-    content: none;
-}
-
-#progressbar li.active:before, #progressbar li.active:after {
-    background: #ee0979;
-    color: white;
-}
-*/
-@media all and (max-width: 768px) {
-    #passtext{
-        font-size: 5px;
-    }
-    fieldset{
-      font-size: 0.5rem;
-    }
-}
-</style>
-<body>
-<div class="container" style="height: 33vh;">
-            <!-- <ul id="progressbar">
-              <li class="active">General Information</li>
-              <li>TRIP Information</li>
-               <li>Physical and Financial Status</li>
-               <li>Submit</li>
-            </ul> -->
-</div>
-<div class="assessment-container container-fluid">
-        
-            <div class="col-md-6 offset-3 form-box">
-                <form role="form" name="reg-form" class="registration-form" id="regform" action="">
-                    <!--
-                    <ul id="progressbar">
-                        <li class="active">Personal Details</li>
-                        <li>Social Profiles</li>
-                        <li>Account Setup</li>
-                        <li>Questions</li>
-                    </ul>
-                    -->
-                    {% csrf_token %}
-                    <fieldset style="padding-left: 2rem; padding-right: 2rem;">
-                        <div class="form-top">
-                            <div class="form-top">
-                                <h2 style="margin: 0px;">Personal Details</h2>
-                                <h5 style="font-size: 15px; color: #bdbdbd;">Fill Your Personal Details</h5>
-                            </div>
-                        </div>
-                        <div class="form-bottom mb-2">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" placeholder="Full Name" id="fname" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required>
-                                </div>
-                                
-                                <div class="form-group col-md-6">
-                                    <input type="email" class="form-control" id="inputemail" aria-describedby="emailHelp" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" placeholder="Enter Email" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <div class="row" style="max-height: 3rem;">
-                                    <div class="form-group col-md-6">
-                                        <div class="input-group">
-                                            <input type="password" name="password" data-toggle="password" id="password-field" class="form-control" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$" placeholder="Password" minlength="8" maxlength="15" data-error="Password should have minimum 8 characters" required> 
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <small id="passtext" class="form-text text-muted mb-2" data-toggle="tooltip" style="font-size: x-small;">Password should have 8 to 10 characters</small>
-                                        </div>
-                                    <div class="form-group col-md-6">
-                                        <input type="tel" class="form-control" name="mobilenumber" placeholder="Contact Number" id="contact_number" pattern="^\d{10}$" minlength="10" maxlength="15" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- adding input tag for button -->
-                            <button type="button" class="btn btn-primary btn-next" style="border-radius: 2rem;">Continue <i class="fas fa-arrow-alt-circle-right"></i></button>
-                        </div>
-                    </fieldset>
-
-                    <!-- Second fieldset -->
-
-                    <fieldset style="padding-left: 2rem; padding-right: 2rem;">
-                        <div class="form-top">
-                            <div class="form-top">
-                                <h2 style="margin: 0px;">Experience</h2>
-                                <h5 style="font-size: 15px; color: #bdbdbd;">Enter Your Experience</h5>
-                            </div>
-                        </div>
-                        <div class="form-bottom mb-2">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="input-group mb-2">
-                                    <div class="custom-file">
-                                        <label class="custom-file-label" for="customFile">Upload Profile</label>
-                                        <input type="file" class="custom-file-input" id="customFile" title="Attach resume in doc/pdf format" accept=".pdf,.doc" required>
-                                        <!-- <input type="file" id="myFile" name="filename2"> -->
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <!-- <label for="textInput">Linkedin URL</label> -->
-                                    <input type="url" id="linkedinurl" class="form-control mb-2" placeholder="Linkedin Profile Link" pattern="^http(s)?:\/\/(www\.)?linkedin\.com\/in\/.*$" required="required">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <input type="url" id="websiteurl" class="form-control mb-2" placeholder="Website Url (if any)" pattern="^http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="url" id="channel" class="form-control mb-2" placeholder="Youtube Channel Link (if any)" pattern="^https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                <!-- <label for="select">Relevant Experience</label> -->
-                                <select class="browser-default custom-select mb-2" id="select" required>
-                                    <option value="" disabled="" selected="">Relevant Experience</option>
-                                    <option value="1">3-6 yrs</option>
-                                    <option value="2">6-10 yrs</option>
-                                    <option value="3">10+ yrs</option>
-                                </select>
-                                </div>
-                                <div class="col-md-6">
-                                <!-- <label for="select">Total Expirence</label> -->
-                                <select class="browser-default custom-select mb-2" id="select_1" required>
-                                    <option value="" disabled="" selected="">Total Expirence</option>
-                                    <option value="1">3-6 yrs</option>
-                                    <option value="2">6-10 yrs</option>
-                                    <option value="3">10+ yrs</option>
-                                </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 text-right">
-                                    <button type="button" class="btn btn-primary btn-previous" style="border-radius: 2rem;"><i class="fas fa-arrow-alt-circle-left"></i> Previous</button>
-                                </div>
-                                <div class="col-md-6">
-                                    <button type="button" class="btn btn-primary btn-next" style="border-radius: 2rem;">Continue <i class="fas fa-arrow-alt-circle-right"></i></button> 
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <!-- Third fieldset -->
-
-                    <fieldset style="padding-left: 2rem; padding-right: 2rem;">
-                        <div class="form-top">
-                            <div class="form-top-left">
-                                <h2 style="margin: 0px;">Course Categories</h2>
-                                <h5 style="font-size: 15px; color: #bdbdbd;">Choose Your Preffered Courses</h5>
-                            </div>
-                        </div>
-                        <div class="form-bottom mb-2">
-                            <button type="button" class="btn btn-block btn-outline-secondary mb-2" data-toggle="modal" data-target="#exampleModal">
-                                Course Categories
-                            </button>
-                            <div class="row">
-                                <div class="col-md-6 text-right">
-                                   <button type="button" class="btn btn-primary btn-previous" style="border-radius: 2rem;"><i class="fas fa-arrow-alt-circle-left"></i> Previous</button> 
-                                </div>
-                                <div class="col-md-6">
-                                    <button type="button" class="btn btn-primary btn-next" style="border-radius: 2rem;">Continue <i class="fas fa-arrow-alt-circle-right"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <!-- Fourth fieldset -->
-
-                    <fieldset style="padding-left: 2rem; padding-right: 2rem;">
-                        <div class="form-top">
-                            <div class="form-top-left">
-                                <h2 style="margin: 0px;">Ask Your Question</h2>
-                                <h5 style="font-size: 15px; color: #bdbdbd;">You can ask your doubts/questions</h5>
-                            </div>
-                        </div>
-                        <div class="form-bottom">
-                            <div class="form-group">
-                                <textarea id="textarea" class="form-control mb-2" placeholder="Type in your Question" style="width: 20rem; height: 4rem; border-radius: 1.5rem;"></textarea>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4 col-sm-5">
-                                    <button type="button" class="btn btn-primary btn-previous" style="border-radius: 2rem;"><i class="fas fa-arrow-alt-circle-left"></i> Previous</button>
-                                </div>
-                                <div class="col-md-4 text-left">
-                                    <button type="submit" class="btn btn-success" style="border-radius: 2rem;">Submit <i class="fas fa-paper-plane"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        
-
-        <!-- Modal Forms -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Course Categories</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div id="accordion">
-        <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none;">
-              <i class="fas fa-briefcase"></i>  Business
-            </button>
-          </h5>
-        </div>
-
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body" style="font-size: 13px;">
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check1">
-              <label class="form-check-label" for="Check1">
-                Human Resources
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check2">
-              <label class="form-check-label" for="Check2">
-                Finance and Accounting
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check3">
-              <label class="form-check-label" for="Check3">
-                Marketing
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check4">
-              <label class="form-check-label" for="Check4">
-                Digital Marketing
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check5">
-              <label class="form-check-label" for="Check5">
-                Trading
-              </label>
-            </div>
-
-          </div>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-header" id="headingTwo">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none;">
-              <i class='fas fa-laptop'></i>  IT and Software
-            </button>
-          </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion" style="font-size: 13px;">
-          <div class="card-body">
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check1">
-              <label class="form-check-label" for="Check1">
-                Web Development
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check2">
-              <label class="form-check-label" for="Check2">
-                Mobile Development
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check3">
-              <label class="form-check-label" for="Check3">
-                Data Science
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check4">
-              <label class="form-check-label" for="Check4">
-                Programming Languages
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check5">
-              <label class="form-check-label" for="Check5">
-                Database Tools
-              </label>
-            </div>
-
-          </div>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-header" id="headingThree">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none;">
-              <i class="fab fa-microsoft"></i>  Office tools
-            </button>
-          </h5>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion" style="font-size: 13px;">
-          <div class="card-body">
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check1">
-              <label class="form-check-label" for="Check1">
-                Advance Tools
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check2">
-              <label class="form-check-label" for="Check2">
-                CAD/CAM
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check3">
-              <label class="form-check-label" for="Check3">
-                Tally
-              </label>
-            </div>
-
-          </div>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-header" id="headingFour">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none;">
-              <i class="fas fa-magic"></i>  Creative tools
-            </button>
-          </h5>
-        </div>
-        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion" style="font-size: 13px;">
-          <div class="card-body">
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check1">
-              <label class="form-check-label" for="Check1">
-                Photography
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check2">
-              <label class="form-check-label" for="Check2">
-                Vediography
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check3">
-              <label class="form-check-label" for="Check3">
-                Web/ Visual/ Game Design
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check4">
-              <label class="form-check-label" for="Check4">
-                Musical Instruments
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check5">
-              <label class="form-check-label" for="Check5">
-                Vocal
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check1">
-              <label class="form-check-label" for="Check1">
-                Dance
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check2">
-              <label class="form-check-label" for="Check2">
-                Doodling
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check3">
-              <label class="form-check-label" for="Check3">
-                DIY/ LI
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check4">
-              <label class="form-check-label" for="Check4">
-                Content Writing
-              </label>
-            </div>
-
-          </div>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-header" id="headingFive">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none;">
-              <i class="fas fa-street-view"></i>  Personality Development
-            </button>
-          </h5>
-        </div>
-        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion" style="font-size: 13px;">
-          <div class="card-body">
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check1">
-              <label class="form-check-label" for="Check1">
-                NLP
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check2">
-              <label class="form-check-label" for="Check2">
-                Personal Finance
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check3">
-              <label class="form-check-label" for="Check3">
-                Stress Management
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check4">
-              <label class="form-check-label" for="Check4">
-                Cope Up VUCA World
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check5">
-              <label class="form-check-label" for="Check5">
-                Languages
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check1">
-              <label class="form-check-label" for="Check1">
-                Business Communication
-              </label>
-            </div>
-
-          </div>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-header" id="headingSix">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none;">
-              <i class="fas fa-user-alt"></i>  Solopreneurship
-            </button>
-          </h5>
-        </div>
-        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion" style="font-size: 13px;">
-          <div class="card-body">
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check1">
-              <label class="form-check-label" for="Check1">
-                SetUp Solopreneurship
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check2">
-              <label class="form-check-label" for="Check2">
-                Personal Branding
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check3">
-              <label class="form-check-label" for="Check3">
-                Blog Writing
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check4">
-              <label class="form-check-label" for="Check4">
-                Wordpress/ Website
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="Check5">
-              <label class="form-check-label" for="Check5">
-                Digital Marketing
-              </label>
-            </div>
-
-          </div>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-header" id="headingSeven">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none;">
-              <i class="fas fa-hand-holding-usd"></i>  Entrepreneurship
-            </button>
-          </h5>
-        </div>
-        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion" style="font-size: 13px;">
-          <div class="card-body">
-
-          </div>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-header" id="headingEight">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none;">
-              <i class="fab fa-linkedin"></i>  Social Media
-            </button>
-          </h5>
-        </div>
-        <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion" style="font-size: 13px;">
-          <div class="card-body">
-
-          </div>
-        </div>
-        </div>
-        <div class="card">
-        <div class="card-header" id="headingNine">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseThree" style="text-decoration: none;">
-              <i class="fas fa-heartbeat"></i>  Health & Fitness
-            </button>
-          </h5>
-        </div>
-        <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion" style="font-size: 13px;">
-          <div class="card-body">
-
-          </div>
-        </div>
-        </div>
-        </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
+<header class="text-gray-700 body-font">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <!--<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg> -->
+      <img src="{% static 'LandingPage/img/logotiny.png' %}" id="logo" style="margin-top: 10px; margin-bottom: 3px;margin-left:8px;width: 40px; height: 30px;">
+      <span class="ml-3 text-xl">DIGITAL TMHM</span>
+    </a>
+    <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+      <a href="/home" class="mr-5 hover:text-gray-900"> Home</a>
+      <a class="mr-5 hover:text-gray-900"> Courses</a>
+      <a class="mr-5 hover:text-gray-900"> My Dashboard</a>
+    </nav>
+    <a href="{% url 'facilitator-register'%}" class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">Register
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7"></path>
+      </svg>
+    </a>
   </div>
-<script src="{% static 'facilitators/js/jquery.min.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script>
-$(".custom-file-input").on("change", function() {
-      var fileName = $(this).val().split("\\").pop();
-      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-    });
+</header>
+<section class="text-gray-700 body-font">
+  <div class="container px-5 py-24 mx-auto flex flex-col">
+    <div class="lg:w-4/6 mx-auto">
+      <div class="rounded-lg h-64 overflow-hidden">
+        <img alt="content" class="object-cover object-center h-full w-full" src="https://source.unsplash.com/1200x500/?teacher,courses">
+      </div>
+      <div class="flex flex-col sm:flex-row mt-10">
+        <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+          <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="flex flex-col items-center text-center justify-center">
+            <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">Phoebe Caulfield</h2>
+            <div class="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
+            <p class="text-base text-gray-600">Raclette knausgaard hella meggs normcore williamsburg enamel pin sartorial venmo tbh hot chicken gentrify portland.</p>
+          </div>
+        </div>
+        <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-300 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+          <p class="leading-relaxed text-lg mb-4">Meggings portland fingerstache lyft, post-ironic fixie man bun banh mi umami everyday carry hexagon locavore direct trade art party. Locavore small batch listicle gastropub farm-to-table lumbersexual salvia messenger bag. Coloring book flannel truffaut craft beer drinking vinegar sartorial, disrupt fashion axe normcore meh butcher. Portland 90's scenester vexillologist forage post-ironic asymmetrical, chartreuse disrupt butcher paleo intelligentsia pabst before they sold out four loko. 3 wolf moon brooklyn.</p>
+          <a class="text-indigo-500 inline-flex items-center">Learn More
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    $(".toggle-password").click(function() {
 
-    $(this).toggleClass("fa-eye fa-eye-slash");
-    var input = $($(this).attr("toggle"));
-    if (input.attr("type") == "password") {
-      input.attr("type", "text");
-    } else {
-      input.attr("type", "password");
-    }
-});
+<section class="text-gray-700 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <h1 class="text-3xl font-medium title-font text-gray-900 mb-12 text-center">Testimonials</h1>
+    <div class="flex flex-wrap -m-4">
+      <div class="p-4 md:w-1/2 w-full">
+        <div class="h-full bg-gray-200 p-8 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-gray-400 mb-4" viewBox="0 0 975.036 975.036">
+            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+          </svg>
+          <p class="leading-relaxed mb-6">Synth chartreuse iPhone lomo cray raw denim brunch everyday carry neutra before they sold out fixie 90's microdosing. Tacos pinterest fanny pack venmo, post-ironic heirloom try-hard pabst authentic iceland.</p>
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="https://dummyimage.com/106x106" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+            <span class="flex-grow flex flex-col pl-4">
+              <span class="title-font font-medium text-gray-900">Holden Caulfield</span>
+              <span class="text-gray-500 text-sm">UI DEVELOPER</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/2 w-full">
+        <div class="h-full bg-gray-200 p-8 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-gray-400 mb-4" viewBox="0 0 975.036 975.036">
+            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+          </svg>
+          <p class="leading-relaxed mb-6">Synth chartreuse iPhone lomo cray raw denim brunch everyday carry neutra before they sold out fixie 90's microdosing. Tacos pinterest fanny pack venmo, post-ironic heirloom try-hard pabst authentic iceland.</p>
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="https://dummyimage.com/107x107" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+            <span class="flex-grow flex flex-col pl-4">
+              <span class="title-font font-medium text-gray-900">Alper Kamu</span>
+              <span class="text-gray-500 text-sm">DESIGNER</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="text-gray-700 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
+      <div class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+        </svg>
+      </div>
+      <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Shooting Stars</h2>
+        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
+      <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">The Catalyzer</h2>
+        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+          <circle cx="6" cy="6" r="3"></circle>
+          <circle cx="6" cy="18" r="3"></circle>
+          <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
+      <div class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">The 400 Blows</h2>
+        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <button class="flex mx-auto mt-20 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
+  </div>
+</section>
 
-$(document).ready(function () {
-    $('.registration-form fieldset:first-child').fadeIn();
-    
-    $('.registration-form input[type="text"] input[type="password"]').on('focus', function () {
-        $(this).removeClass('input-error');
-    }); 
+<footer class="text-gray-700 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap md:text-left text-center order-first">
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+          </li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+          </li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+          </li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">SUBSCRIBE</h2>
+        <div class="flex xl:flex-no-wrap md:flex-no-wrap lg:flex-wrap flex-wrap justify-center md:justify-start">
+          <input class="w-40 sm:w-auto bg-gray-100 rounded xl:mr-4 lg:mr-0 sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base py-2 px-4" placeholder="Placeholder" type="text">
+          <button class="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
+        </div>
+        <p class="text-gray-500 text-sm mt-2 md:text-left text-center">Bitters chicharrones fanny pack
+          <br class="lg:block hidden">waistcoat green juice
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="bg-gray-200">
+    <div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <!--
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg> -->
+        <img src="{% static 'LandingPage/img/logotiny.png' %}" id="logo" style="margin-top: 10px; margin-bottom: 3px;margin-left:8px;width: 40px; height: 30px;">
+        <span class="ml-3 text-xl"> Digital TMHM</span>
+      </a>
+      <p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2020 tdigital —
+        <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@tdigitaltweet</a>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <a class="text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+            <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+            <circle cx="4" cy="4" r="2" stroke="none"></circle>
+          </svg>
+        </a>
+      </span>
+    </div>
+  </div>
+</footer>
 
-    // next step
-    $('.registration-form .btn-next').on('click', function () {
-        var parent_fieldset = $(this).parents('fieldset');
-        var next_step = true;
-
-        parent_fieldset.find('input[type="text"],input[type="tel"],input[type="email"],input[type="password"],input[type="file"]').each(function () {
-            if ($(this).val() === "") {
-                $(this).addClass('input-error');
-                next_step = false;
-            } else {
-                $(this).removeClass('input-error');
-            }
-        });
-
-        if (next_step) {
-            parent_fieldset.fadeOut(400, function () {
-              
-                $(this).next().fadeIn();
-            });
-        }  else {
-            alert("Please fill your details in specified format");
-        }
-    });
-
-    // previous step
-    $('.registration-form .btn-previous').on('click', function () {
-        $(this).parents('fieldset').fadeOut(400, function () {
-            $(this).prev().fadeIn();
-        });
-    });
-
-    // submit
-    $('.registration-form').on('submit', function (e) {
-
-        $(this).find('input[type="text"],input[type="email"]').each(function () {
-            if ($(this).val() === "") {
-                e.preventDefault();
-                $(this).addClass('input-error');
-            } else {
-                $(this).removeClass('input-error');
-            }
-        });
-
-    });
-});   
-
-/* end of script*/
-</script>
-</body>
+  </body>
 </html>

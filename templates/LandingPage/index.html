@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-{% load socialaccount %}
-
-
 <html>
 {% load static %}
 
 <head>
-    <title></title>
+    <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel='stylesheet' href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,6 +15,8 @@
         margin: 0;
         padding: 0;
         max-width: 100%;
+        overflow-x: hidden;
+        font-family: Raleway;
     }
     .item{
         background-color: white;
@@ -28,7 +27,6 @@
     }
     .label{
         color: white;
-
     }
     .head{
         color: black;
@@ -42,10 +40,6 @@
 
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
         padding: 30px;
-    }
-    .modal-content{
-        background-color: #353b48;
-        width:80%;
     }
     .signup-form .hint {
         color: black;
@@ -73,10 +67,11 @@
         margin-left: 30px;
         margin-right: 30px;
     }
+    
     .slider-area{
-        position: relative;
         margin:0;
     }
+
     .carousel-control.left, .carousel-control.right{
         background: transparent;
     } 
@@ -102,34 +97,35 @@
         color: #ababab;
     }
     #navbar-left a:hover{
-        color: white;
+        color: black;
     }
     #navbar-left button{
         color: white;
     }
     footer{
-        background: #1F1C1B; 
-        color:#ababab;
+        background: #eeeeee; 
+        color:#757575;
         font-size: 13px;
         line-height: 1.2
     }
     footer h6{
-        color: white;
+        color: #9e9e9e;
     }
     footer a{
-        color: #ababab;
+        color: black;
     }
     footer a:link{
         text-decoration: none;
     }
     footer a:hover{
-        color: white;
+        color: #757575;
     }
     footer #social i{
-        color: #3db166;
+        color: black;
+        font-size: 1.2rem;
     }
     footer #social i:hover{
-        color: white;
+        color: #3db166;
     }
     @media (max-width: 768px) {
         #navbar-left{
@@ -144,6 +140,9 @@
             padding-left: 0 !important;
             padding-right: 0 !important;
         }
+        .section-a img{
+            padding: 0;
+        }
         footer{
             font-size: 7.2px;    
         }
@@ -152,13 +151,42 @@
         #navbar-left{
             display: block;
         }
+        #navbar-left form{
+            display: none;
+        }
+        .section-a{
+            margin-bottom: 32px;
+        }
+        .section-a img{
+            margin: 32px;
+        }
+        .section-a #section-a-learn h2,h3{
+            font-size: 31px;
+        }
+        .section-a #section-a-learn h4{
+            font-size: 15px;
+        }
+        #query{
+            margin-left: 11em;
+        }
+        #query_request{
+            text-align: center !important;
+        } 
         footer{
             font-size: 7.2px;    
+        }
+    }
+    @media (max-width: 375px){
+        #query{
+            margin-left: 0 !important; 
         }
     }
     @media all and (max-width: 765px){
         footer{
             font-size: 1rem;
+        }
+        #query{
+            margin-left: 1.5em;
         }
         #footer-left{
             padding-left: 3em;
@@ -183,16 +211,9 @@
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-2 mb-2">
-            <img src="{% static 'LandingPage/img/logotiny.png' %}" id="logo" style="margin-left:52px;padding:5px">
-        </div>
-        </div>
-    </div>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ 
+    <img src="{% static 'LandingPage/img/logotiny.png' %}" id="logo" style="margin-top: 10px; margin-bottom: 3px;margin-left:8px;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e0e0e0;">
         <a class="navbar-brand" href="/home">Digital TMHM</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -217,223 +238,104 @@
                 <li class="nav-item">
                     <form class="form-inline my-2 my-lg-0">
                         {% csrf_token %}
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn my-sm-0" type="submit" style="color: black;s"><i class="fa fa-search"></i></button>
                     </form>
                 </li>
-                {% if user.is_authenticated %}
-                    <li><p class="text-white">Welcome, {{ user.username }} !</p></li>
-                {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">Login</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal" style="padding-left: 0;">Login</a>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-primary rounded" data-toggle="modal" data-target="#exampl" type="submit">Sign Up</button>
+                    <a href="/signup" class="btn btn-primary rounded" style="color: white">Sign Up</a>
                 </li>
-                {% endif %}
             </ul>
         </div>
     </nav>
-
-    <center>
-        <div class="modal fade" id="exampl" tabindex="-1" role="dialog" aria-labelledby="exampl" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                     <div class="signup-form">
-                         <form>
-                            {% csrf_token %}
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h2 class="head mb-4">Your Details</h2>
-
-
-                            <div class="form-group" >
-                            <!-- <label for="First Name">Name</label> -->
-                            <input type="text" class="form-control" value="" id="First" placeholder="First Name">
-
-                            </div>
-
-                            <div class="form-group">
-
-                            <input type="text" class="form-control"  value="" id="Last" placeholder="Last Name">
-                            </div>
-
-
-                            <div class="form-group ">
-                            <!-- <label for="exampleInputEmail1">Email address</label> -->
-                            <input type="email" class="form-control" value="" id="email1" aria-describedby="emailHelp" placeholder="Email">
-
-
-                            </div>
-                            <div class="form-group">
-                            <!-- <label for="exampleInputPassword1">Phone</label> -->
-                            <input type="text" class="form-control" value="" id="phone1" placeholder="+91">
-                            </div>
-
-                            <div class="form-group">
-
-                            <input type="password" class="form-control" value="" id="pass1" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-
-                            <input type="password" class="form-control" value="" id="cpass" placeholder="Confirm Password">
-                            </div>
-
-                            <!--<select class="custom-select decorated" id="inputGroupSelect01" placeholder="Courses">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">I accept all the<span style="color:#007bff">&nbsp;Terms&nbsp;</span>&nbsp;and&nbsp;<span style="color:#007bff">Privacy Policies</span></label>
-                            </div> -->
-                            <button type="submit" class="btn mt-4" style="width: 100%;background: linear-gradient(to right, rgba(240,240,240), rgba(0, 128, 255));color: white;
-                            font-weight: 800;font-size: 18px;" data-toggle="modal" data-target="#examp2" class="close" data-dismiss="modal" aria-label="Close" >Next</button>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-</center>
-<!-- Above DONE -->
-
-<center>
-	<div class="modal fade" href="#" id="examp2" data-dismiss="modal" data-target="#examp1" tabindex="-1" role="dialog" aria-labelledby="exampl" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="signup-form">
-                    <form>
-                        {% csrf_token %}
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h2 class="head mb-4">Are you a</h2>
-
-                        <input type="radio" >
-                        <label for="student">Student</label><br>
-                        <input type="radio">
-                        <label for="jobseeker">Jobseeker</label><br>
-                        <input type="radio">
-                        <label for="professional">Working Professional</label><br>
-                        <input type="radio">
-                        <label for="facilitator">Facilitator/Trainer</label><br>
-                        <input type="radio">
-                        <label for="freelancer">Solopreneur/Freelancer</label><br>
-                        <input type="radio">
-                        <label for="entrepreneur">Entrepreneur/Business Owner</label><br>
-                        <input type="radio" id="other">
-                        <label for="other">Other</label>
-                            <button type="submit" class="btn mt-4" style="width: 100%;background: linear-gradient(to right, rgba(240,240,240), rgba(0, 128, 255));color: white;
-                            font-weight: 800;font-size: 18px;" data-toggle="modal" data-target="#examp3" class="close" data-dismiss="modal" >Next</button>
-
-                    </form>
-                </div>
-            </div>
-		</div>
-	</div>
-</center>
-
-<center>
-    <div class="modal fade" href="#" id="examp3" tabindex="-1" role="dialog" aria-labelledby="exampl" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="signup-form">
-                        <form>
-                            {% csrf_token %}
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h2 class="head mb-4" >Course Categories</h2>
-                                        <ul style="text-align:left;font-size:15px">
-                                                <input type="checkbox" class="check"><label>Arts and Humanities</label><br>
-                                                <input type="checkbox" class="check"> <label>Marketing/Business</label><br>
-                                                <input type="checkbox" class="check"> <label>Computer Science</label><br>
-                                                <input type="checkbox" class="check"> <label>Data Science</label><br>
-                                                <input type="checkbox" class="check"> <label>Information Technology</label><br>
-                                                <input type="checkbox" class="check"> <label>Math and Logic</label><br>
-                                                <input type="checkbox" class="check"> <label>Solopreneurship</label><br>
-                                                <input type="checkbox" class="check"> <label>Personal Development</label><br>
-                                                <input type="checkbox" class="check"> <label>Social Sciences</label><br>
-                                                <input type="checkbox" class="check"> <label>Language Learning</label>
-                                                </ul>
-
-                            <button type="submit" class="btn mt-4" style="width: 100%;background: linear-gradient(to right, rgba(240,240,240), rgba(0, 128, 255));color: white;
-                            font-weight: 800;font-size: 18px; ">Register</button>
-                                <p class="hint mt-1" style="font-size:0.6em">By clicking on register now you agree to our terms and conditions</p>
-                            </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-</center>
 <!-- Modal -->
-<center>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="background-color: white">
-                <form>
-                    {% csrf_token %}
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 350px;outline: none">
-                            <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h2 class="head1 text-center">Login</h2>
 
-                    <center><a href="{% provider_login_url 'google' %}" class="btn btn1 mt-5"><img src="{% static 'LandingPage/img/icon.png' %}">&nbsp;&nbsp;&nbsp;&nbsp;Login With Google</a></center>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-size: 13px;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel"><strong>SiGN IN</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+            <button type="submit" class="btn btn-light border border-light ml-2 mt-1" style="font-size: 10px;"><img src="{% static 'LandingPage/img/google.svg' %}" style="width: 20px; height: 20px; margin-right: 2px"> Sign in with Google</button>
+            <button type="submit" class="btn btn-light border border-light ml-2 mt-1" style="font-size: 11px;"><i class="fab fa-facebook-square" style="font-size: 20px; color: #311b92; margin-right: 2px"></i> Sign in with Facebook</button>
+        </div> 
+        <p class="mt-2 text-center"><img src="{% static 'LandingPage/img/line2.png' %}">&nbsp;<b>or</b>&nbsp;<img src="{% static 'LandingPage/img/line2.png' %}"></p>
+        <form style="padding-right: 80px; padding-left: 80px;">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address"> 
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="password" class="form-control" data-toggle="password" placeholder="Password" id="password-field"> 
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <p style="font-size: 8.5px">By clicking Sign In, you agree to our <a href="/hpme">Terms of Use</a> and our <a href="/home">Privacy Policy.</a></p>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" style="font-size: 12px">SIGN IN</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-                    <p class="mt-5"><img src="{% static 'LandingPage/img/line2.png' %}">&nbsp;<b>OR</b>&nbsp;<img src="{% static 'LandingPage/img/line2.png' %}"></p>
-                    <center><input type="email" class="form-control inp1 mt-3" id="emailorphone" placeholder="Enter your email id" style="outline:none" ></center>
-
-                    <center><button type="submit" class="btn  mt-5 mb-4" style="background-image:  linear-gradient(to right, rgba(240,240,240), rgba(0, 128, 255));color: white;width:90%;padding: 10px;font-weight: 800;font-size: 18px;">Continue</button></center>
-                </form>
+<div class="section-a">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 col-sm-12" style="padding: 0 !important;">
+                <img src="{% static 'LandingPage/img/LandingSectionre.png' %}" class="figure-img img-fluid" width="800px" height="550px">
+            </div>
+            <br>
+            <div class="col-md-6 col-sm-12 text-center" style="margin-top: 4rem;" id="section-a-learn">
+                <h2><span style="color:blue">Live</span> Classes & <span style="color:blue">Recorded</span> Videos </h2>
+                <h3>for your Careerhood</h3>
+                <h4>upSkill today for a better Career tomorrow.</h4>
+                <button class="btn my-2 my-sm-0 mb-4 mt-1" style="color:white;background:#2F55D4;">Stay learner  &#8250;</button>
             </div>
         </div>
     </div>
-</center>
-	<div class="container-fluid">
-		<div class="row" >
-			<div class="col-lg-6" id="slide">
-                <figure class="figure">
-                    <img src="{% static 'LandingPage/img/LandingSectionre.png' %}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                </figure>
+</div>
 
-					</div>
-					<div class="col-lg-6">
-						<br> <br> <br> <br>
-							<center>	<h1 style="color:black;font-size:37px"><span style="color:blue">Live</span> Classes & <span style="color:blue">Recorded</span> Videos </h1></center>
-						<center>	<h1 style="color:black;font-size:37px">for your Careerhood</h1> </center>
-
-						<center>	<h4 style="color:black;font-size:22px">upSkill today for a better Career tomorrow.</h4></center>
-							<br>
-							<center>	<button class="btn my-2 my-sm-0" style="color:white;background:#2F55D4;padding-left:34px;padding-right:34px;padding-bottom:10px;font-weight:bold;font-size:19px">Stay learner  &#8250;</span></button></center>
-					</div>
-				</div>
-			</div>
-
-<div class='container' >
+<div class="container text-center">
     <center><h2 style="color:black;font-family:'Raleway'"> Explore what excites you! </h2></center>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light" >
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="margin-top: -5px;border:2px solid black">
 				<span><i class="fa fa-bars" aria-hidden="true" style="color: black;font-size: 18px;"> </i></span>
 
 			</button>
-			<div class=" nav1 collapse navbar-collapse" id="navbarNav" >
+			<div class="navbar collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav" >
 					<li class="nav-item active" >
-						<a class="nav-link link" style="  font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat1' onclick='change(this.id);'style="font-size:18px!important">Data Science<span class="sr-only">(current)</span></a>
+						<a class="nav-link link" style="font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat1' onclick='change(this.id);'style="font-size:18px!important">Data Science<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link link" style="  font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat2' onclick='change(this.id);'style="font-size:18px!important">Buisness</a>
+						<a class="nav-link link" style="font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat2' onclick='change(this.id);'style="font-size:18px!important">Buisness</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link link" style="  font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat3' onclick='change(this.id);'style="font-size:18px!important">Marketing</a>
+						<a class="nav-link link" style="font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat3' onclick='change(this.id);'style="font-size:18px!important">Marketing</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link link " style="  font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat4' onclick='change(this.id);' style="font-size:18px!important">Web Designing</a>
+						<a class="nav-link link " style="font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat4' onclick='change(this.id);' style="font-size:18px!important">Web Designing</a>
 					</li>
 					<li class="nav-item ">
-						<a class="nav-link link" style="  font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat5' onclick='change(this.id);'style="font-size:18px!important">Development</a>
+						<a class="nav-link link" style="font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat5' onclick='change(this.id);'style="font-size:18px!important">Development</a>
 					</li>
 					<li class="nav-item">
-						<a class=" nav-link link " style="  font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat6' onclick='change(this.id);' style="font-size:18px!important">Photography</a>
+						<a class=" nav-link link " style="font-size: 19px; text-align: center; margin-left: 55px;" href='javascript:void();' id='cat6' onclick='change(this.id);' style="font-size:18px!important">Photography</a>
 					</li>
 				</ul>
 			</div>
@@ -639,7 +541,7 @@
                     <center>
                         <h4 style="color:#696969;font-family:'Raleway'; text-align: center;">Learn with ease</h4>
                     </center>
-                    <p style="color:#696969;font-weight:bold;padding:30px;text-align: center;font-size: 17px;font-family:'Raleway';">
+                    <p style="color:#696969;font-weight:bold;padding:15px;text-align: center;font-size: 15px;font-family:'Raleway';">
                     Self-paced learning-whenever and whatever you want to learn.</p>
                 </div>
 
@@ -649,9 +551,8 @@
                     <center>
                         <h4 style="color:#696969;font-family:'Raleway'; text-align: center;">Explore our live classes</h4>
                     </center>
-                    <p style="color:#696969;font-weight:bold;padding:30px;
-    text-align:center;
-    font-size: 17px;font-family:'Raleway';">It's one-stop solution for all your needs by industry learners. </p>
+                    <p style="color:#696969;font-weight:bold;padding:5px; text-align:center;font-size: 15px;font-family:'Raleway';">
+                    It's one-stop solution for all your needs by industry experts. </p>
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
@@ -660,9 +561,9 @@
                     <center>
                         <h4 style="color:#696969;font-family:'Raleway'; text-align: center;">Get an internship</h4>
                     </center>
-                    <p style="color:#696969;font-weight:bold;padding:30px;
+                    <p style="color:#696969;font-weight:bold;padding:15px;
     text-align:center;
-    font-size: 17px;font-family:'Raleway';">We also offer internship opportunities in selected ares.</p>
+    font-size: 15px;font-family:'Raleway';">We also offer internship opportunities in selected ares.</p>
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
@@ -671,9 +572,9 @@
                     <center>
                         <h4 style="color:#696969;font-family:'Raleway';">Stand out of the crowd</h4>
                     </center>
-                    <p style="color:#696969;font-family:'Raleway';font-weight:bold;padding:30px;
+                    <p style="color:#696969;font-family:'Raleway';font-weight:bold;padding:15px;
     text-align:center;
-    font-size: 17px;">Get ready for a career with more confidence.</p>
+    font-size: 15px;">Get ready for a career with more confidence.</p>
                 </div>
             </div>
 
@@ -684,8 +585,8 @@
                 </center>
             <br>
 
-                <div class="row">
-                    <div class="col-md-12 offset-1" style="background-color:white">
+                <div class="row" style="margin-left: 10px;">
+                    <div class="col-md-12" style="background-color:white">
                         <div class='container-fluid'>
                             <div id='inam' class="carousel slide" data-ride='carousel'>
                                 <ol class='carousel-indicators'>
@@ -696,8 +597,8 @@
                                 <div class='carousel-inner'>
                                     <div class='carousel-item active'>
                                         <div class='container'>
-                                            <div class='row'>
-                                                <div class='col-md-6 col-sm-12 text-center mb-2'>
+                                            <div class='row text-center'>
+                                                <div class='col-md-4 col-sm-12 mb-2'>
                                                     <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
@@ -707,7 +608,53 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class='col-md-6 col-sm-12 text-center'>
+                                                <div class='col-md-4 col-sm-12 col-sm-offset-1 mb-2'>
+                                                    <div class="card border" style="width: 17em; height: 27em">
+                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
+                                                            <h6 style="color:#262626;font-size: 0.75em;">Professional product developer,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">Accenture</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='col-md-4 col-sm-12 col-sm-offset-1 mb-2'>
+                                                    <div class="card border" style="width: 17em; height: 27em">
+                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="color:red;">Warlord</h5>
+                                                            <h6 style="color:#262626;font-size: 0.75em;">Full Stack Web Developer,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">MicroSoft</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='carousel-item'>
+                                        <div class='container'>
+                                            <div class='row text-center'>
+                                                <div class='col-md-4 col-sm-12 col-sm-offset-1 mb-2'>
+                                                    <div class="card border" style="width: 17em; height: 27em">
+                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="color:red;">Arunima M</h5>
+                                                            <h6 style="color:#262626;font-size: 0.75em;">Lead Consultant,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">JP Morgan</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='col-md-4 col-sm-12 col-sm-offset-1 mb-2'>
+                                                    <div class="card border" style="width: 17em; height: 27em">
+                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
+                                                            <h6 style="color:#262626;font-size: 0.75em;">Professional product developer,IT</h6>
+                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">Accenture</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='col-md-4 col-sm-12 col-sm-offset-1 mb-2'>
                                                     <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
@@ -722,8 +669,8 @@
                                     </div>
                                     <div class='carousel-item'>
                                         <div class='container'>
-                                            <div class='row'>
-                                                <div class='col-md-6 col-sm-12 text-center mb-2'>
+                                            <div class='row text-center'>
+                                                <div class='col-md-4 col-sm-12 col-sm-offset-1 mb-2'>
                                                     <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
@@ -733,7 +680,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class='col-md-6 col-sm-12 text-center'>
+                                                <div class='col-md-4 col-sm-12 col-sm-offset-1 mb-2'>
                                                     <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
@@ -743,28 +690,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class='carousel-item'>
-                                        <div class='container'>
-                                            <div class='row'>
-                                                <div class='col-md-6 col-sm-12 text-center mb-2'>
-                                                    <div class="card border" style="width: 17em; height: 27em">
-                                                        <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title" style="color:red;">Arunima M</h5>
-                                                            <h6 style="color:#262626;font-size: 0.75em;">Lead Consultant,IT</h6>
-                                                            <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">JP Morgan</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class='col-md-6 col-sm-12 text-center'>
+                                                <div class='col-md-4 col-sm-12 col-sm-offset-1 mb-2'>
                                                     <div class="card border" style="width: 17em; height: 27em">
                                                         <img class="card-img-top" src="{% static 'LandingPage/img/sa.png' %}" alt="Card image cap" height="250px">
                                                         <div class="card-body">
                                                             <h5 class="card-title" style="color:red;">Dhruv Goswami</h5>
-                                                            <h6 style="color:#262626; font-size: 0.75em;">Professional product developer,IT</h6>
+                                                            <h6 style="color:#262626;font-size: 0.75em;">Professional product developer,IT</h6>
                                                             <p class="card-text" style="background:#F5F5F5;padding:30px;margin:15px 15px">Accenture</p>
                                                         </div>
                                                     </div>
@@ -840,13 +771,13 @@
     </div>
     <br> <br>
 
-    <div class="container-fluid" style="background-color: #262626; max-height: 80%;">
+    <div class="container-fluid" style="background-color:  #959595; max-height: 80%;">
         <div class="container1">
             <br>
-            <h1 class="text-center " style="color: #9e9e9e;font-size:2.5em;">Our Industry Partners</h1>
+            <h1 class="text-center " style="color: #bdbdbd;font-size:2.5em;"><strong>Our Industry Partners</strong></h1>
             <center>
             <div style="max-width: 100%">
-                <p class="text-center text-justify mt-2" style="font-size: 1.2rem; color: #bdbdbd;">Our facilitators are industry experts in their respective category excited to share their experience,wisdom and
+                <p class="text-center text-justify mt-2" style="font-size: 1.2rem; color: black;">Our facilitators are industry experts in their respective category excited to share their experience,wisdom and
                     experienced tool with you. </p>
                 <hr style="background-color:#00ff2be0;height:2px;width:60px;">
             </div>
@@ -868,12 +799,12 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="img-area">
-                            <img class="rounded mx-auto d-block" src="{% static 'LandingPage/img/liza3.jpg' %}" alt="First slide">
+                            <img class="rounded mx-auto d-block" src="{% static 'LandingPage/img/liza3.jpg' %}" alt="Second slide">
                         </div>
                         <div class="carousel-caption">
                             <h4 class="mt-1">Jessica Hische</h4>
                             <h4 class="mb-4">Illustrator</h4>
-                        </div>                 
+                        </div>             
                     </div>
                     <div class="carousel-item">
                         <div class="img-area">
@@ -940,22 +871,26 @@
                 </a>
             </div>
         </div>
-    </div>  
-</div>
+    </div> 
+</div> 
 
 <!-- Footer -->
 <div style="margin-top: 5em;"></div>
-        <div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-					<center><img src="{% static 'LandingPage/img/customer.png' %}"  class="img-fluid" style="width:350px;height:350px"></center>
-				</div>
-                <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 mt-4" id="request" style="background-size:1400px;padding-top:30px;padding-left:30px">
-					<div class="col-md-6">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <center><img src="{% static 'LandingPage/img/customer.png' %}"  class="img-fluid" style="width:350px;height:350px"></center>
+            </div>
+            <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 mt-4" id="request" style="background-size:1400px;padding-top:30px;padding-left:30px">
+                <div class="row">
+                    <div class="col-12 text-left" id="query_request">
                         <h2>Request for a free <br> Online Councelling</h2>
-                        <form action=" " method="post" onSubmit="return check_phone(this)" >
+                    </div>
+                    <div class="col-12" id="query">
+                        <form action="" method="post" onSubmit="return check_ephone(this)" style="width: 20em">
                             {% csrf_token %}
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <input type="email" class="form-control" name="youremail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                                 <div class="input-group mb-3 mt-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">+91</span>
@@ -968,84 +903,63 @@
                 </div>
             </div>
         </div>
+    </div>
 
 <div style="margin-bottom: 5em;"></div>               
 <!-- Footer -->
 <footer class="page-footer font-small pt-4">
     <div class="container text-center text-md-left">
-        <div class="row text-center text-md-left mt-3 pb-3" style="background: transparent;">
+        <div class="row text-center text-md-left pb-3" style="background: transparent;">
 
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3" id="footer-left">
-                <h6 class="text-uppercase mb-2 font-weight-bold">Company name</h6>
-                <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
-                <p><img src="{% static 'LandingPage/img/logotiny.png' %}" style="width: 30px; height: 30px;"> Digital TMHM</p>
+                <h6 class="text-uppercase mb-2 font-weight-bold" style="font-size: 11px;"><img src="{% static 'LandingPage/img/logotiny.png' %}" style="width: 30px; height: 30px;"> Digital TMHM</h6>
             </div>
-                <hr class="w-100 clearfix d-md-none">
 
-       
+            <hr class="w-100 clearfix d-md-none">
+
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3" id="footer-left">
-                <h6 class="text-uppercase mb-2 font-weight-bold">Products</h6>
-                <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
                 <p>
                 <a href="#!">About Us</a>
                 </p>
                 <p>
-                <a href="#!">Internships</a>
+                <a href="#!">Career</a>
                 </p>
                 <p>
-                <a href="#!">Blogs/Articles</a>
+                <a href="#!">Contact Us</a>
                 </p>
                 <p>
                 <a href="#!">Terms/Services</a>
                 </p>
             </div>
-        
 
-        <hr class="w-100 clearfix d-md-none">
+            <hr class="w-100 clearfix d-md-none">
 
-       
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3" id="footer-left">
-                <h6 class="text-uppercase mb-2 font-weight-bold">Useful links</h6>
-                <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto" id="footer-left">
+                <br>
                 <p>
                 <a href="#!">Learners</a>
                 </p>
                 <p>
-                <a href="/facilitator">Facilitators</a>
+                <a href="{% url 'facilitator' %}">Facilitators</a>
                 </p>
                 <p>
-                <a href="#!">Campus Ambassador</a>
+                <a href="#!">Campus</a>
                 </p>
                 <p>
                 <a href="#!">Corporates</a>
                 </p>
             </div>
-
         
             <hr class="w-100 clearfix d-md-none">
-
-        
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3" id="footer-left">
-            <h6 class="text-uppercase mb-2 font-weight-bold">Contact</h6>
-            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
+    
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 social" id="footer-left">
+            <h6 class="text-uppercase font-weight-bold">Our App</h6>
+            <hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 20px;">
             <p>
-            <i class="fas fa-home mr-2"></i>Hyderabad</p>
-            <p>
-            <a href="mailto:tmhmindia@gmail.com"><i class="fas fa-envelope mr-2"></i>tmhmindia@gmail.com</p></a>
-            <p>
-            <a href="tel:+91 7234949596"><i class="fas fa-phone mr-2"></i>+91 7234949596</p></a>
-            <p>
-            <a href="tel:+91 7234949596"><i class="fas fa-print mr-2"></i>+91 7234949596</p></a>
-        </div>
-        
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3" id="footer-left">
-            <h6 class="text-uppercase mb-2 font-weight-bold">Mobile App</h6>
-            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 1px; background-color: #3db166;">
-            <p>
-            <a href="https://www.apple.com/ios/app-store/"><i class="fab fa-apple mr-1" style="font-size: 20px;"></i> Apple Store</a>
+            <a href="https://www.apple.com/ios/app-store/"><i class="fab fa-apple mr-1" style="font-size: 20px;"></i> IOS Store</a>
             </p>
             <p>
-            <a href="https://play.google.com/store"><img class="mr-1" src="{% static 'LandingPage/img/play-store.svg' %}" width="20px" height="20px"> Google Play Store</a>
+            <a href="https://play.google.com/store"><img class="mr-1" src="{% static 'LandingPage/img/play-store.svg' %}" width="20px" height="20px"> Andriod Store</a>
             </p>
         </div>
 
@@ -1054,22 +968,18 @@
 
         <hr class="mb-4 mt-0 d-inline-block mx-auto text-sm-lef" style="width: 100%; height: 1px; background-color: #3db166;">
 
-       
         <div class="row d-flex align-items-center">
 
-       
-        <div class="col-md-7 col-lg-8">
-
-            
+        <div class="col-md-7 col-lg-8">            
             <p class="text-center text-md-left text-sm-left">© 2020 Copyright:
             <a href="https://mdbootstrap.com/">
                 <strong> TMHM Company Pvt.Ltd </strong>
             </a>
             </p>
-
         </div>
         <div class="col-md-5 col-lg-4 ml-lg-0">
             <div class="text-center text-md-right text-sm-left" id="social">
+    
             <ul class="list-unstyled list-inline">
                 <li class="list-inline-item">
                 <a class="btn-floating btn-sm rgba-white-slight mx-1">
@@ -1111,17 +1021,44 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/da956b6924.js" crossorigin="anonymous"></script>
-
+        <script src="{% static '/LandingPage/js/owl.carousel.js' %}"></script>
 
         <script>
 
-            function check_phone(phno){
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                });
+
+                $(".toggle-password").click(function() {
+
+                $(this).toggleClass("fa-eye fa-eye-slash");
+                var input = $($(this).attr("toggle"));
+                if (input.attr("type") == "password") {
+                input.attr("type", "text");
+                } else {
+                input.attr("type", "password");
+                }
+            });
+
+            function check_ephone(phno, email){
                 var regex = /^[0-9]{10}$/;
-                if(regex.test(phno.yourphone.value)){
+                var regexe_email = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if(regex.test(phno.yourphone.value) && regex_email.test(email.youremail.value)){
                     return true;
                     } else {
-                        alert("This is not a valid phone number");
-                        return false;
+                        if (!(regex.test(phno.yourphone.value)) ) {
+                            alert("This is not a valid phone number");
+                            return false;
+                        }
+                        if (!(regex.test(email.youreamil.value)) ) {
+                            alert("This is not a valid email id");
+                            return false;
+                        }
+                        if (!(regex.test(phno.yourphone.value) && regex_email.test(email.youremail.value)) ) {
+                            alert("This is not a valid phone number and email id");
+                            return false;
+                        } 
                 }
             }
         </script>

@@ -19,11 +19,11 @@ from facilitators.forms import *
 #     return render(request,'facilitators/index.html')
 
 
-def facilitator_page(request):
+def facilitatorformpage(request):
     if request.method=='POST':
         fname=request.POST.get('fname','')
         lname=request.POST.get('lname','')
-        name=fname+" "+lname
+        name=fname+" "+lname 
         phone=request.POST.get('phone','')
         link1=request.POST.get('twitter','')
         link2=request.POST.get('facebook','')
@@ -31,6 +31,9 @@ def facilitator_page(request):
         password1=request.POST.get('pass','')
         password2=request.POST.get('cpass','')
         email=request.POST.get('email','')
+        releventExp=request.POST.get('gplus','')
+        totalExp=request.POST.get('gplus','')
+        profile=request.FILES['tprofile']
         facilitator = FacilitatorForm(name=name,phone=phone)
         experience=  ExperienceForm(Linkedin_Url=link1,Website_Url=link2,Youtube_Url=link3)
         userinfo=FacilitatorRegistrationForm(username='',first_name=fname,last_name=lname,email=email)
@@ -38,4 +41,11 @@ def facilitator_page(request):
         experience.save()
         userinfo.save()
     return render(request,'facilitators/index.html')
-    
+
+
+def facilitator_page(request):
+    return render(request, 'facilitators/index.html')
+
+
+def register(request):
+    return render(request, 'facilitators/register/index.html')
