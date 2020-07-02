@@ -11,6 +11,7 @@ class Facilitator(models.Model):
     phone=models.CharField(max_length=13,blank=False)
     PAddress=models.TextField(blank=True,null=True)
     TAddress=models.TextField(blank=True,null=True)
+    portfolio = models.FileField(upload_to ='uploads/% Y/% m/% d/')
     profile=models.ImageField(upload_to ='Mentor_profiles/% Y/% m/% d/',default='default.png')
     Uid = models.ForeignKey(User, on_delete=models.CASCADE,unique=True)
     def __str__(self):

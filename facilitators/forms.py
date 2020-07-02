@@ -12,7 +12,7 @@ class FacilitatorForm(ModelForm):
 class ExperienceForm(ModelForm):
     class Meta:
         model = Experience
-        fields = ['Linkedin_Url', 'Website_Url', 'Youtube_Url']
+        fields = ['Linkedin_Url', 'Website_Url', 'Youtube_Url','RExperience','TExperience']
 
 class FacilitatorRegistrationForm(UserCreationForm):
     email = forms.EmailField()
