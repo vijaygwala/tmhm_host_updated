@@ -1,10 +1,21 @@
 from django.forms import ModelForm
-from  facilitators.models import Facilitator,Experience
+from  facilitators.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
 
+
+class FacilitatorRegistrationForm(UserCreationForm):
+    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+    
+     
 class FacilitatorForm(ModelForm):
     class Meta:
         model = Facilitator
@@ -14,31 +25,10 @@ class ExperienceForm(ModelForm):
         model = Experience
         fields = ['Linkedin_Url', 'Website_Url', 'Youtube_Url','RExperience','TExperience']
 
-class FacilitatorRegistrationForm(UserCreationForm):
-    email = forms.EmailField()
-
-    class Meta:
-        model = User
-        fields = (
-            'username', 
-            'first_name',
-            'last_name',
-            'email',
-            'password1',
-            'password2'
-            )
-
-    def save(self, commit=True):
-        user = super( FacilitatorRegistrationForm, self).save(commit=False)
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
-        user.email = self.cleaned_data['email']
-        user.username=user.first_name+user.last_name
-        if commit:
-            user.save()
-
-        return user
-
+# class FacilitatorQueriesForm(ModelForm):
+#     class Meta:
+#         model=FacilitatorQueries
+#         fields=('query','status')
 # class FacilitatorEditProfileForm(UserChangeForm):
 
 #     class Meta:

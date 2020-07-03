@@ -6,14 +6,14 @@ from django.contrib.auth.models import User
 #this relation contains all the facilitators
 class Facilitator(models.Model):
     Fid=models.AutoField(primary_key=True)
-    name=models.CharField(max_length=100,null=False,blank=False)
+    name=models.CharField(max_length=100,null=True,blank=True)
     DOB=models.DateField(blank=True,null=True)
     phone=models.CharField(max_length=13,blank=False)
     PAddress=models.TextField(blank=True,null=True)
     TAddress=models.TextField(blank=True,null=True)
     portfolio = models.FileField(upload_to ='uploads/% Y/% m/% d/')
     profile=models.ImageField(upload_to ='Mentor_profiles/% Y/% m/% d/',default='default.png')
-    Uid = models.ForeignKey(User, on_delete=models.CASCADE,unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
@@ -26,7 +26,7 @@ class Experience(models.Model):
     Youtube_Url= models.URLField(max_length=250)
     RExperience=models.TextField()
     TExperience=models.TextField()
-    Fid = models.ForeignKey(Facilitator, on_delete=models.CASCADE,unique=True)
+    facilitator= models.OneToOneField(Facilitator, on_delete=models.CASCADE)
 
 #this table contain all the categories
 class Category(models.Model):
@@ -79,6 +79,7 @@ class FacilitatorQueriesAnswer(models.Model):
     Qid = models.ForeignKey(FacilitatorQueries, on_delete=models.CASCADE)
     def __str__(self):
         return self.Answer
+
 
 
 

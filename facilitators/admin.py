@@ -1,9 +1,9 @@
 from django.contrib import admin
 from .models import  (Facilitator,Category,Course,offer,Experience,SubCategory,FacilitatorQueries,FacilitatorQueriesAnswer)
 class FacilitatorAdmin(admin.ModelAdmin):
-    list_display=('Fid','name','DOB','phone','PAddress','TAddress','profile','Uid')
+    list_display=('Fid','name','DOB','phone','PAddress','TAddress','profile','user')
 class ExperienceAdmin(admin.ModelAdmin):
-    list_display=('Eid','Linkedin_Url','Website_Url','Youtube_Url','RExperience','TExperience','Fid')
+    list_display=('Eid','Linkedin_Url','Website_Url','Youtube_Url','RExperience','TExperience','facilitator')
 class CategoryAdmin(admin.ModelAdmin):
     list_display=('cat_id','name')
 class SubCategoryAdmin(admin.ModelAdmin):

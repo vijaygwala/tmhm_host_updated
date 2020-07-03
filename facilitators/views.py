@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from facilitators.models import *
 from facilitators.forms import *
+from django.contrib.auth import authenticate,login
+from django.views import View
+import random
+import string
 
 # # Create your views here.
 # def home(request):
@@ -49,21 +53,113 @@ from facilitators.forms import *
 def facilitator_page(request):
     return render(request, 'facilitators/index.html')
 
+# def FacilitatorAuthentication(self,request):
+#     context={}
+#     username=self.cleaned_data.get('username')
+#     password=self.cleaned_data.get('password1')
+#     user=authenticate(username=username , password=password)
+#     if user is not None:
+#         if user.is_active:
+#             login(request, user)
+#             return render(request, 'facilitators/index.html')
 
-def register(request):
+                
+#         else:
+#             context['error_message'] = "user is not active"
+#             print(context['error_message'])
+#     else:
+#         context['error_message'] = "email or password not correct"
+#         print(context['error_message'])
+#     return render(request,'facilitators/register/index.html', context)
+
+#  facilitatorForm = FacilitatorForm(request.POST)
+#         userForm=FacilitatorRegistrationForm(request.POST)
+#         #print("yha tk")
+#         print(facilitatorForm)
+#         print(userForm)
+#         if userForm.is_valid() and facilitatorForm.is_valid():
+#             user=userForm.save()
+#             facilitator=facilitatorForm.save(commit=False)
+#             facilitator.user=user
+#             facilitator.save()
+#             email=userForm.cleaned_data.get('email')
+           
+#             try:   
+#                 username = User.objects.get(email=email.lower()).username
+#             except username.DoesNotExist:
+#                 return None
+#             password=userForm.cleaned_data.get('password1')
+#             user=authenticate(username=username , password=password)
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return render(request, 'facilitators/index.html')
+
+                
+#                 else:
+#                     context['error_message'] = "user is not active"
+#             else:
+#                 context['error_message'] = "email or password not correct"
+#             return render(request, self.template_name, context)
+
+
+# def register(request):
+#     context={}
+#     if request.method=='POST':
+       
+class RegisterLoginView(View):
+    template_name = 'facilitators/register/index.html'
     context={}
-    if request.method=='POST':
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
         
-        facilitator = FacilitatorForm(request.POST)
-        print("yha tk")
-        print(facilitator)
-        if facilitator.is_valid():
+        data = request.POST.copy()
+        data['name'] = data['first_name']+" "+data['last_name']
+                                   
+        facilitatorForm = FacilitatorForm(data)
+        userForm=FacilitatorRegistrationForm(request.POST)
+        
+        
+        experienceForm=ExperienceForm(data)
+    
+        user=None
+        qo=None
+        exp=None
+        facilitator=None
+        if userForm.is_valid():  
+            user=userForm.save()
+        else:
+            print("invalid user form")
+        if facilitatorForm.is_valid():
+        
+            facilitator=facilitatorForm.save(commit=False)
+            facilitator.user=user
             facilitator.save()
-            print("save succesfully")
-    else:
-        print("before saving")
-        facilitator = FacilitatorForm()
-        context={"form":facilitator}
+        else:
+            print("invalid facilitator form")
+       
+        if experienceForm.is_valid():      
+            exp=experienceForm.save(commit=False)
+            exp.facilitator=facilitator
+            exp.save()
+        else :
+            print("invalid experience form")
+        query=data.POST.get('query',None)
+        
+        if query!=None:
+            qo=FacilitatorQueries(query=query,Fid=facilitator)
+            qo.save()
+            
+        else :
+            print("there is no  query")
+        
+        #FacilitatorAuthentication(userForm,request)
 
+        
 
-    return render(request, 'facilitators/register/index.html',context)
+        return render(request, self.template_name,context)
+
+            
+    

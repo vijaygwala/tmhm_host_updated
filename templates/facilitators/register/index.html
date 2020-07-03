@@ -8,36 +8,30 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel='stylesheet' href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> 
 </head>
 <style>
 /*custom font*/
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
-/*basic reset*/
 * {
     margin: 0;
     padding: 0;
 }
-
 html {
     height: 100%;
     background: #e0e0e0; /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #6441A5, #2a0845); /* Chrome 10-25, Safari 5.1-6 */
 }
-
 body {
     font-family: montserrat, arial, verdana;
     background: transparent;
 }
-
-/*form styles*/
 #msform {
     text-align: center;
     position: relative;
-    margin-top: 30px;
+    margin-top: 20px;
 }
-
 #msform fieldset {
     background: white;
     border: 0 none;
@@ -47,31 +41,24 @@ body {
     box-sizing: border-box;
     width: 80%;
     margin: 0 10%;
-
-    /*stacking fieldsets above each other*/
     position: relative;
 }
-
 #msform fieldset:not(:first-of-type) {
     display: none;
 }
-
 #msform input:focus, #msform textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    border: 1px solid #ee0979;
+    border: 1px solid #0277bd;
     outline-width: 0;
     transition: All 0.5s ease-in;
     -webkit-transition: All 0.5s ease-in;
     -moz-transition: All 0.5s ease-in;
     -o-transition: All 0.5s ease-in;
 }
-
-/*buttons*/
 #msform .action-button {
     width: 100px;
-    background: #ee0979;
     font-weight: bold;
     color: white;
     border: 0 none;
@@ -80,11 +67,9 @@ body {
     padding: 10px 5px;
     margin: 10px 5px;
 }
-
 #msform .action-button:hover, #msform .action-button:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #ee0979;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px blue;
 }
-
 #msform .action-button-previous {
     width: 100px;
     background: #C5C5F1;
@@ -96,36 +81,15 @@ body {
     padding: 10px 5px;
     margin: 10px 5px;
 }
-
 #msform .action-button-previous:hover, #msform .action-button-previous:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
 }
-
-/*headings
-.fs-title {
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #2C3E50;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-    font-weight: bold;
-}
-
-.fs-subtitle {
-    font-weight: normal;
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 20px;
-}
-*/
-/*progressbar*/
 #progressbar {
     margin-bottom: 30px;
     overflow: hidden;
     /*CSS counters to number the steps*/
     counter-reset: step;
 }
-
 #progressbar li {
     list-style-type: none;
     color: black;
@@ -137,7 +101,6 @@ body {
     position: relative;
     letter-spacing: 1px;
 }
-
 #progressbar li:before {
     content: counter(step);
     counter-increment: step;
@@ -151,8 +114,6 @@ body {
     border-radius: 25px;
     margin: 0 auto 10px auto;
 }
-
-/*progressbar connectors*/
 #progressbar li:after {
     content: '';
     width: 100%;
@@ -161,29 +122,38 @@ body {
     position: absolute;
     left: -50%;
     top: 9px;
-    z-index: -1; /*put it behind the numbers*/
+    z-index: -1;
 }
-
 #progressbar li:first-child:after {
-    /*connector not needed before the first step*/
     content: none;
 }
-
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
 #progressbar li.active:before, #progressbar li.active:after {
-    background: #ee0979;
+    background: #616161;
     color: white;
 }
-
+@media all and (min-width: 990px){
+    #facilitator-form{
+        margin-left: 13em;
+    }
+}
+@media all and (max-width: 768px) and (min-width: 768px){
+    #facilitator-form{
+        margin-left: 9em;
+    }
+}
+@media all and (max-width: 989px) and (min-width: 769px){
+    #facilitator-form{
+        margin-left: 9em;
+    }
+}
 </style>
 <body>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form id="msform" method="POST" enctype="multipart/form-data" action="{% url 'facilitator-register' %}">
-                         {% csrf_token %}
+        <div class="col-md-7" id="facilitator-form">
+            <form id="msform" method="POST" enctype="multipart/form-data" action="{% url 'facilitator-register' %}" >
+                {% csrf_token %}
                 <ul id="progressbar">
                     <li class="active">Personal Details</li>
                     <li>Experience</li>
@@ -192,18 +162,21 @@ body {
                 </ul>
 
                 <fieldset>
-                    <h2 class="fs-title text-left">Personal Details</h2>
-                    <h3 class="fs-subtitle text-left">Fill Your Details</h3>
+                    <h3 class="text-left mb-1">Personal Details</h3>
+                    <h6 class="text-left mb-2" style="color: #757575">Fill Your Details</h6>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" id="fname" name="name" placeholder="First Name">
+                            <input type="text" class="form-control" name="first_name" id="fname" placeholder="First Name">
                         </div>
                         <div class="form-group col-md-6">
                             <div class="input-group">
-                                <input type="text" class="form-control"  id="lnmae" name="lname" placeholder="Last Name">
+                                <input type="text" class="form-control" name="last_name" id="lname" placeholder="Last Name">
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                            <input type="text" class="form-control" name="username" id="uname" placeholder="User Name">
                     </div>
 
                     <div class="form-group">
@@ -237,35 +210,36 @@ body {
                         </div>
                     </div>
 
-                    <input type="button" name="next" class="next action-button" value="Next"/>
+                    <input type="button" name="next" class="next action-button btn-primary" value="Next"/>
                 </fieldset>
+
                 <fieldset>
-                    <h2 class="fs-title text-left">Experience</h2>
-                    <h4 class="fs-subtitle text-left">Share your experience</h4>
+                    <h3 class="text-left mb-1">Experience</h3>
+                    <h6 class="text-left mb-2" style="color: #757575">Share your experience</h6>
 
                     <div class="form-group">
                         <div class="custom-file">
-                            <label class="custom-file-label" for="customFile">Upload Profile</label>
-                            <input type="file" name="portfolio" class="custom-file-input" id="customFile" title="Attach resume in doc/pdf format" accept=".pdf,.doc" required>
+                            <label class="custom-file-label text-left" for="customFile">Upload Profile</label>
+                            <input type="file" class="custom-file-input" name="portfolio" id="customFile" title="Attach resume in doc/pdf format" accept=".pdf,.doc" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="custom-file">
-                            <input type="url" id="linkedinurl" class="form-control frm-control-sm" placeholder="Linkedin Profile Link" pattern="^http(s)?:\/\/(www\.)?linkedin\.com\/in\/.*$" name="linkedin" required="required">
+                            <input type="url" id="linkedinurl" class="form-control frm-control-sm" name="Linkedin_Url" placeholder="Linkedin Profile Link" pattern="^http(s)?:\/\/(www\.)?linkedin\.com\/in\/.*$" required="required">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <input type="url" id="websiteurl" name="website" class="form-control mb-2" placeholder="Website Url (if any)" pattern="^http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$">
+                        <input type="url" id="websiteurl" class="form-control mb-2" name="Website_Url" placeholder="Website Url (if any)" pattern="^http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$">
                     </div>
 
                     <div class="form-group">
-                        <input type="url" id="channel" name="youtube" class="form-control mb-2" placeholder="Youtube Channel Link (if any)" pattern="^https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$">
+                        <input type="url" id="channel" class="form-control mb-2" name="Youtube_Url" placeholder="Youtube Channel Link (if any)" pattern="^https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$">
                     </div>
 
                     <div class="form-group">
-                        <select class="browser-default custom-select mb-2" id="select" name="rexp" required>
+                        <select class="browser-default custom-select mb-2" id="select" name="RExperience" required>
                             <option value="" disabled="" selected="">Relevant Experience</option>
                             <option value="1">3-6 yrs</option>
                             <option value="2">6-10 yrs</option>
@@ -274,7 +248,7 @@ body {
                     </div>
 
                     <div class="form-group">
-                        <select class="browser-default custom-select mb-2" name="texp" id="select" required>
+                        <select class="browser-default custom-select mb-2" name="TExperience" id="select" required>
                             <option value="" disabled="" selected="">Total Experience</option>
                             <option value="1">3-6 yrs</option>
                             <option value="2">6-10 yrs</option>
@@ -283,104 +257,110 @@ body {
                     </div>
 
                     <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="button" name="next" class="next action-button" value="Next"/>
+                    <input type="button" name="next" class="next action-button btn-primary" value="Next"/>
                 </fieldset>
 
                 <fieldset>
-                    <h2 class="fs-title text-left">Course Categories</h2>
-                    <h5 class="fs-subtitle text-left">Choose your course category</h5>
+                    <h3 class="text-left mb-1">Course Categories</h3>
+                    <h6 class="text-left mb-3" style="color: #757575">Choose your course</h6>
 
                     <div class="form-group">
-                        <select name="langOpt[]" multiple id="langOpt" required>
-                            <option value="" disabled="" selected="">Business</option>
-                            <option value="Human resources">Human resources</option>
-                            <option value="Finance and Accounting">Finance and Accounting</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Digital Marketing">Digital Marketing</option>
-                            <option value="Trading">Trading</option>
-                        </select>
-                        <script>
-                          $('#langOpt').multiselect({
-                            column: 1,
-                            placeholder: 'Choose'
-                          });
-                        </script>
-                    </div>
-                    <div class="form-group">
-                        <select class="browser-default custom-select mb-2" name="langOpt[]" multiple id="select" required>
-                            <option value="" disabled="" selected="">IT and Software</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="Mobile Development">Mobile Development</option>
-                            <option value="Data Science">Data Science</option>
-                            <option value="Programming Languages">Programming Languages</option>
-                            <option value="Database Tools">Database Tools</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="browser-default custom-select mb-2" id="select" required>
-                            <option value="" disabled="" selected="">Office Tools</option>
-                            <option value="Advance Tools">Advance Tools</option>
-                            <option value="CAD/CAM">CAD/CAM</option>
-                            <option value="Tally">Tally</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="browser-default custom-select mb-2" id="select" required>
-                            <option value="" disabled="" selected="">Creative Tools</option>
-                            <option value="Photography">Photography</option>
-                            <option value="Vediography">Vediography</option>
-                            <option value="Web/ Visual/ Game Design">Web/ Visual/ Game Design</option>
-                            <option value="Musical Instruments">Musical Instruments</option>
-                            <option value="Vocal">Vocal</option>
-                            <option value="Dance">Dance</option>
-                            <option value="Doodling">Doodling</option>
-                            <option value="DIY/LI">DIY/LI</option>
-                            <option value="Content Writing">Content Writing</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="browser-default custom-select mb-2" id="select" required>
-                            <option value="" disabled="" selected="">Personality Development</option>
-                            <option value="NLP">NLP</option>
-                            <option value="Personal Finance">Personal Finance</option>
-                            <option value="Stress Management">Stress Management</option>
-                            <option value="Cope Up VUCA World">Cope Up VUCA World</option>
-                            <option value="Languages">Languages</option>
-                            <option value="Business Communication">Business Communication</option>
+                        <select class="selectpicker" multiple title="Choose Your Course" name="course" id="choose-category" data-live-search="true">
+                            <optgroup label="Business">
+                                <option value="Human Resources">Human Resources</option>
+                                <option value="Finance and Accounting">Finance and Accounting</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Trading">Trading</option>
+                            </optgroup>
+                            <optgroup label="It and Software">
+                                <option value="Web Development">Web Development</option>
+                                <option value="Mobile Development">Mobile Development</option>
+                                <option value="Data Science">Data Science</option>
+                                <option value="Programming Languages">Programming Languages</option>
+                                <option value="Database Tools">Database Tools</option>
+                            </optgroup>
+                            <optgroup label="Office Tools">
+                                <option value="Advance Tools">Advance Tools</option>
+                                <option value="CAD/CAM">CAD/CAM</option>
+                                <option value="Tally">Tally</option>
+                            </optgroup>
+                            <optgroup label="Creative Tools">
+                                <option value="Photography">Photography</option>
+                                <option value="Vediography">Vediography</option>
+                                <option value="Web/ Visual/ Game Design">Web/ Visual/ Game Design</option>
+                                <option value="Musical Instruments">Musical Instruments</option>
+                                <option value="Vocal">Vocal</option>
+                                <option value="Dance">Dance</option>
+                                <option value="Doodling">Doodling</option>
+                                <option value="DIY/ LI">DIY/ LI</option>
+                                <option value="Content Writing">Content Writing</option>
+                            </optgroup>
+                            <optgroup label="Personality Development">
+                                <option value="NLP">NLP</option>
+                                <option value="Personal Finance">Personal Finance</option>
+                                <option value="Stress Management">Stress Management</option>
+                                <option value="Cope Up VUCA World">Cope Up VUCA World</option>
+                                <option value="Languages">Languages</option>
+                                <option value="Business Communication">Business Communication</option>
+                            </optgroup>
+                            <optgroup label="Solopreneurship">
+                                <option value="SetUp Solopreneurship">SetUp Solopreneurship</option>
+                                <option value="Personal Branding">Personal Branding</option>
+                                <option value="Blog Writing">Blog Writing</option>
+                                <option value="Wordpress/ Website">Wordpress/ Website</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                            </optgroup>
                         </select>
                     </div>
 
                     <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="button" name="next" class="next action-button" value="Next"/>
+                    <input type="button" name="next" class="next action-button btn-primary" value="Next"/>
                 </fieldset>
 
                 <fieldset>
-                    <h2 class="fs-title">Ask your question</h2>
-
+                    <h3 class="text-center mb-2">Ask your question</h3>
                     <div class="form-group">
-                        <textarea id="textarea" class="form-control mb-2 text-center" placeholder="Type in your Question" style= "height: 4rem;"></textarea>
+                        <textarea id="textarea" name="query" class="form-control mb-2 text-center" placeholder="Type in your Question" style= "height: 5em;"></textarea>
                     </div>
                     <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="submit" name="submit" id="submitbtn" class="submit action-button" value="Submit"/>
+                    <input type="submit" name="submit" id="submitbtn" class="submit action-button btn-success" value="Submit"/>
                 </fieldset>
             </form>
         </div>
     </div>
-
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
     <script>
-
-
     var current_fs, next_fs, previous_fs;
     var left, opacity, scale;
     var animating;
+     $(document).ready(function(){
+  $("#msform").submit(function(){
+       $.ajax({ // create an AJAX call...
+                data: $(this).serialize(), // get the form data
+                type: $(this).attr('method'), // GET or POST
+                url: $(this).attr('action'), // the file to call
+                success: function(response) { // on success..
+                   // $('#DIV_CONTAINING_FORM').html(response); // update the DIV 
+                 alert("Submit ho gya")
 
+                }
+            });
+            return false;
+   
+  });
+  $("#submitbtn").click(function(){
+    $("#msform").submit();
+  });  
+});
+
+    
     $(".next").click(function(){
         if(animating) return false;
         animating = true;
@@ -442,27 +422,6 @@ body {
         });
     });
 
-
-
-    $(document).ready(function(){
-  $("#msform").submit(function(){
-       $.ajax({ // create an AJAX call...
-                data: $(this).serialize(), // get the form data
-                type: $(this).attr('method'), // GET or POST
-                url: $(this).attr('action'), // the file to call
-                success: function(response) { // on success..
-                   // $('#DIV_CONTAINING_FORM').html(response); // update the DIV 
-                 alert("Submit")
-
-                }
-            });
-            return false;
-   
-  });
-  $("#submitbtn").click(function(){
-    $("#msform").submit();
-  });  
-});
 
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
