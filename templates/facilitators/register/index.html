@@ -153,7 +153,7 @@ body {
     <div class="row">
         <div class="col-md-7" id="facilitator-form">
             <form id="msform" method="POST" enctype="multipart/form-data" action="{% url 'facilitator-register' %}" >
-                {% csrf_token %}
+                    {% csrf_token %}
                 <ul id="progressbar">
                     <li class="active">Personal Details</li>
                     <li>Experience</li>
