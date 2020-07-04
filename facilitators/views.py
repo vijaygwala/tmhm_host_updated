@@ -231,29 +231,34 @@ def facilitator_page(request):
         
 #         return render(request,'facilitators/index.html', context)
 
-class RegisterLoginView(View):
-    template_name = 'facilitators/register/index.html'
+# class RegisterLoginView(View):
+#     template_name = 'facilitators/register/index.html'
     
-    def get(self, request):
+#     def get(self, request):
     
-        user_form = UserForm()
-        profile_form = ProfileForm()
-        return render(request, self.template_name,context={'user_form':user_form,'profile_form':profile_form})
+#         user_form = UserForm()
+#         profile_form = ProfileForm()
+#         return render(request, self.template_name,context={'form':user_form,'profile_form':profile_form})
 
-    def post(self,request):
-        if request.method == 'POST':
-            user_form = UserForm(request.POST)
-            profile_form = ProfileForm(request.POST)
-            if user_form.is_valid() and profile_form.is_valid():
-                user_form.save()
-                profile_form.save()
-                messages.success(request, ('Your profile was successfully updated!'))
-                return HttpResponseRedirect('facilitators/index.html')
-            else:
-                messages.error(request, ('Please correct the error below.'))
+#     def post(self,request):
+#         if request.method == 'POST':
+#             user_form = UserForm(request.POST)
+#             profile_form = ProfileForm(request.POST)
+#             if user_form.is_valid() :#and profile_form.is_valid():
+#                 user_form.save()
+#                 #profile_form.save()
+#                 messages.success(request, ('Your profile was successfully updated!'))
+#                 return HttpResponseRedirect('facilitators/index.html')
+#             else:
+#                 messages.error(request, ('Please correct the error below.'))
      
-            return render(request, 'facilitators/index.html')   
+#             return render(request, 'facilitators/index.html')   
 
     
+from django.views.generic import CreateView
 
+class RegisterLoginView(CreateView):
+    template_name = 'facilitators/register/index.html'
+    form_class = UserForm
+    success_url = '/'
     

@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     # endVijay
+    'widget_tweaks',
 ]
 # for go
 # By vijay

@@ -1,4 +1,5 @@
 <!doctype html>
+{% load widget_tweaks %}
 <html>
 <head>
     <meta charset="utf-8">
@@ -152,7 +153,7 @@ body {
 <div class="container">
     <div class="row">
         <div class="col-md-7" id="facilitator-form">
-            <form id="msform" method="POST" enctype="multipart/form-data" action="{% url 'facilitator-register' %}" >
+            <form id="msform" method="POST"  action="{% url 'facilitator-register' %}" >
                     {% csrf_token %}
                 <ul id="progressbar">
                     <li class="active">Personal Details</li>
@@ -161,171 +162,49 @@ body {
                     <li>Ask your question</li>
                 </ul>
 
-                <fieldset>
-                    <h3 class="text-left mb-1">Personal Details</h3>
-                    <h6 class="text-left mb-2" style="color: #757575">Fill Your Details</h6>
+    <fieldset>
+{% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="first_name" id="fname" placeholder="First Name">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="last_name" id="lname" placeholder="Last Name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                            <input type="text" class="form-control" name="username" id="uname" placeholder="User Name">
-                    </div>
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
 
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Email address">
-                    </div>
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      
 
-                    <div class="form-group">
-                        <input type="tel" class="form-control" id="exampleInputPhone" name="phone" placeholder="Phone Number">
-                    </div>
+      {% if form.is_bound %}
+        {% if field.errors %}
+          {% render_field field class="form-control is-invalid"  %}
+          {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field field class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field field class="form-control" placeholder=field.name %}
+      {% endif %}
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <div class="input-group">
-                                <input type="password" class="form-control" data-toggle="password"  id="password-field" name="password1" placeholder="Password">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <div class="input-group">
-                                <input type="password" class="form-control" data-toggle="password"  id="confirm-password-field" name="password2" placeholder="Re-Password">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                    <span toggle="#confirm-password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <input type="button" name="next" class="next action-button btn-primary" value="Next"/>
-                </fieldset>
-
-                <fieldset>
-                    <h3 class="text-left mb-1">Experience</h3>
-                    <h6 class="text-left mb-2" style="color: #757575">Share your experience</h6>
-
-                    <div class="form-group">
-                        <div class="custom-file">
-                            <label class="custom-file-label text-left" for="customFile">Upload Profile</label>
-                            <input type="file" class="custom-file-input" name="portfolio" id="customFile" title="Attach resume in doc/pdf format" accept=".pdf,.doc" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="custom-file">
-                            <input type="url" id="linkedinurl" class="form-control frm-control-sm" name="Linkedin_Url" placeholder="Linkedin Profile Link" pattern="^http(s)?:\/\/(www\.)?linkedin\.com\/in\/.*$" required="required">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="url" id="websiteurl" class="form-control mb-2" name="Website_Url" placeholder="Website Url (if any)" pattern="^http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="url" id="channel" class="form-control mb-2" name="Youtube_Url" placeholder="Youtube Channel Link (if any)" pattern="^https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$">
-                    </div>
-
-                    <div class="form-group">
-                        <select class="browser-default custom-select mb-2" id="select" name="RExperience" required>
-                            <option value="" disabled="" selected="">Relevant Experience</option>
-                            <option value="1">3-6 yrs</option>
-                            <option value="2">6-10 yrs</option>
-                            <option value="3">10+ yrs</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <select class="browser-default custom-select mb-2" name="TExperience" id="select" required>
-                            <option value="" disabled="" selected="">Total Experience</option>
-                            <option value="1">3-6 yrs</option>
-                            <option value="2">6-10 yrs</option>
-                            <option value="3">10+ yrs</option>
-                        </select>
-                    </div>
-
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="button" name="next" class="next action-button btn-primary" value="Next"/>
-                </fieldset>
-
-                <fieldset>
-                    <h3 class="text-left mb-1">Course Categories</h3>
-                    <h6 class="text-left mb-3" style="color: #757575">Choose your course</h6>
-
-                    <div class="form-group">
-                        <select class="selectpicker" multiple title="Choose Your Course" name="course" id="choose-category" data-live-search="true">
-                            <optgroup label="Business">
-                                <option value="Human Resources">Human Resources</option>
-                                <option value="Finance and Accounting">Finance and Accounting</option>
-                                <option value="Marketing">Marketing</option>
-                                <option value="Digital Marketing">Digital Marketing</option>
-                                <option value="Trading">Trading</option>
-                            </optgroup>
-                            <optgroup label="It and Software">
-                                <option value="Web Development">Web Development</option>
-                                <option value="Mobile Development">Mobile Development</option>
-                                <option value="Data Science">Data Science</option>
-                                <option value="Programming Languages">Programming Languages</option>
-                                <option value="Database Tools">Database Tools</option>
-                            </optgroup>
-                            <optgroup label="Office Tools">
-                                <option value="Advance Tools">Advance Tools</option>
-                                <option value="CAD/CAM">CAD/CAM</option>
-                                <option value="Tally">Tally</option>
-                            </optgroup>
-                            <optgroup label="Creative Tools">
-                                <option value="Photography">Photography</option>
-                                <option value="Vediography">Vediography</option>
-                                <option value="Web/ Visual/ Game Design">Web/ Visual/ Game Design</option>
-                                <option value="Musical Instruments">Musical Instruments</option>
-                                <option value="Vocal">Vocal</option>
-                                <option value="Dance">Dance</option>
-                                <option value="Doodling">Doodling</option>
-                                <option value="DIY/ LI">DIY/ LI</option>
-                                <option value="Content Writing">Content Writing</option>
-                            </optgroup>
-                            <optgroup label="Personality Development">
-                                <option value="NLP">NLP</option>
-                                <option value="Personal Finance">Personal Finance</option>
-                                <option value="Stress Management">Stress Management</option>
-                                <option value="Cope Up VUCA World">Cope Up VUCA World</option>
-                                <option value="Languages">Languages</option>
-                                <option value="Business Communication">Business Communication</option>
-                            </optgroup>
-                            <optgroup label="Solopreneurship">
-                                <option value="SetUp Solopreneurship">SetUp Solopreneurship</option>
-                                <option value="Personal Branding">Personal Branding</option>
-                                <option value="Blog Writing">Blog Writing</option>
-                                <option value="Wordpress/ Website">Wordpress/ Website</option>
-                                <option value="Digital Marketing">Digital Marketing</option>
-                            </optgroup>
-                        </select>
-                    </div>
-
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="button" name="next" class="next action-button btn-primary" value="Next"/>
-                </fieldset>
-
-                <fieldset>
-                    <h3 class="text-center mb-2">Ask your question</h3>
-                    <div class="form-group">
-                        <textarea id="textarea" name="query" class="form-control mb-2 text-center" placeholder="Type in your Question" style= "height: 5em;"></textarea>
-                    </div>
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+      {% if field.errors %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
                     <input type="submit" name="submit" id="submitbtn" class="submit action-button btn-success" value="Submit"/>
+
+
+                    <input type="button" name="next" class="next action-button btn-primary" value="Next"/>
                 </fieldset>
+
             </form>
         </div>
     </div>
@@ -340,7 +219,7 @@ body {
     var current_fs, next_fs, previous_fs;
     var left, opacity, scale;
     var animating;
-     $(document).ready(function(){
+     {% comment %} $(document).ready(function(){
   $("#msform").submit(function(){
        $.ajax({ // create an AJAX call...
                 data: $(this).serialize(), // get the form data
@@ -358,7 +237,7 @@ body {
   $("#submitbtn").click(function(){
     $("#msform").submit();
   });  
-});
+}); {% endcomment %}
 
     
     $(".next").click(function(){
