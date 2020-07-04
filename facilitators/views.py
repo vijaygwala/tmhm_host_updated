@@ -252,7 +252,7 @@ class RegisterLoginView(View):
             else:
                 messages.error(request, ('Please correct the error below.'))
      
-            return render(request, 'profiles/profile.html')   
+            return render(request, 'facilitators/index.html')   
 
     
 
