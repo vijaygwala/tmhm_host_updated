@@ -53,8 +53,8 @@ from django.contrib.auth.forms import UserCreationForm
 # #     return render(request,'facilitators/index.html')
 
 
-# def facilitator_page(request):
-#     return render(request, 'facilitators/index.html')
+def facilitator_page(request):
+    return render(request, 'facilitators/index.html')
 
 # # def FacilitatorAuthentication(self,request):
 # #     context={}
