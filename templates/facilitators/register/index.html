@@ -202,7 +202,7 @@ body {
         {% endif %}
         </div>
 
-        {% render_field field class="form-control" placeholder=field.name %}
+        {% render_field field class="form-control" placeholder=field.label  %}
       {% endif %}
 
       {% if field.errors %}
@@ -366,7 +366,7 @@ body {
           {% render_field field class="form-control is-valid" %}
         {% endif %}
       {% else %}
-        {% render_field field class="form-control" style="height:5em;" placeholder=field.name %}
+        {% render_field field class="form-control" style="height:5em;" placeholder=field.label %}
       {% endif %}
 
       {% if field.errors %}

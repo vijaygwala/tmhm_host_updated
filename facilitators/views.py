@@ -8,6 +8,11 @@ import string
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
+from django.template.defaulttags import register
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
 # # # Create your views here.
 # # def home(request):
@@ -259,7 +264,8 @@ from django.views.generic import CreateView
 
 class RegisterLoginView(CreateView):
     def get(self, request, *args, **kwargs):
-        context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm()}
+        personal_detail={'first_name':'First name','last_name':'Last name','username':'Username','password1':'Password','passowrd2':'Confirm Password'}
+        context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm(),'place':personal_detail}
         return render(request, 'facilitators/register/index.html', context)
 
     def post(self, request, *args, **kwargs):
