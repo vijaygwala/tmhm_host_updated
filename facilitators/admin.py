@@ -59,8 +59,7 @@ class CustomUserAdmin(UserAdmin):
         if not obj:
             return list()
         return super(CustomUserAdmin, self).get_inline_instances(request, obj)
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
+
 class ExperienceAdmin(admin.ModelAdmin):
     list_display=('Eid','Linkedin_Url','Website_Url','Youtube_Url','RExperience','TExperience','facilitator')
 class FacilitatorQueriesAdmin(admin.ModelAdmin):
@@ -68,3 +67,5 @@ class FacilitatorQueriesAdmin(admin.ModelAdmin):
 
 admin.site.register(FacilitatorQueries,FacilitatorQueriesAdmin)
 admin.site.register(Experience,ExperienceAdmin)
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)

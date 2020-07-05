@@ -13,22 +13,22 @@ class UserForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ( 'first_name', 'last_name','username', 'email', 'password1', 'password2', )
+        fields = ( 'first_name', 'last_name','username', 'email', 'password1', 'password2' )
     
      
 # class FacilitatorForm(ModelForm):
 #     class Meta:
 #         model = Facilitator
 #         fields = ('name', 'phone')
-# class ExperienceForm(ModelForm):
-#     class Meta:
-#         model = Experience
-#         fields = ['Linkedin_Url', 'Website_Url', 'Youtube_Url','RExperience','TExperience']
+class ExperienceForm(ModelForm):
+    class Meta:
+        model = Experience
+        fields = ['Linkedin_Url', 'Website_Url', 'Youtube_Url','RExperience','TExperience']
 
-# # class FacilitatorQueriesForm(ModelForm):
-# #     class Meta:
-# #         model=FacilitatorQueries
-# #         fields=('query','status')
+class FacilitatorQueriesForm(ModelForm):
+    class Meta:
+        model=FacilitatorQueries
+        fields=('query',)
 # # class FacilitatorEditProfileForm(UserChangeForm):
 
 # #     class Meta:
@@ -48,5 +48,5 @@ class UserForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ( 'phone', 'portfolio')
+        fields = ( 'phone',)
 

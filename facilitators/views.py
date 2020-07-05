@@ -258,7 +258,40 @@ def facilitator_page(request):
 from django.views.generic import CreateView
 
 class RegisterLoginView(CreateView):
-    template_name = 'facilitators/register/index.html'
-    form_class = UserForm
-    success_url = '/'
-    
+    def get(self, request, *args, **kwargs):
+        context = {'form': UserForm(),'pform':ProfileForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm()}
+        return render(request, 'facilitators/register/index.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = UserForm(request.POST)
+        expform = ExperienceForm(request.POST)
+        phone=request.POST.get('phone','')
+        fquery=FacilitatorQueriesForm(request.POST)
+        user=None
+        if form.is_valid():#and profile_form.is_valid():
+           user=form.save()
+           profile=Profile.objects.get(user=user.id)
+           profile.phone=phone
+           profile.save()
+       
+
+        if expform.is_valid():
+            ex=expform.save(commit=False)
+            ex.facilitator=user
+            ex.save()
+
+        if fquery.is_valid():
+            qo=fquery.save(commit=False)
+            qo.user=user
+            qo.save()
+        
+       
+        
+        
+        #     #profile_form.save()
+        #     messages.success(request, ('Your profile was successfully updated!'))
+        #     return render(request, 'facilitators/index.html')
+        # else:
+        #     messages.error(request, ('Please correct the error below.'))
+     
+        return render(request, 'facilitators/index.html')

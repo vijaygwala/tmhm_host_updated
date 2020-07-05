@@ -17,8 +17,8 @@ class Profile(models.Model):
     DOB = models.DateField(null=True, blank=True)
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
     phone=models.CharField(max_length=13,blank=False)
-    portfolio = models.FileField(upload_to ='uploads/% Y/% m/% d/')
-    profile=models.ImageField(upload_to ='Mentor_profiles/% Y/% m/% d/',default='default.png')
+    portfolio = models.FileField(upload_to ='uploads/')
+    profile=models.ImageField(upload_to ='Mentor_profiles/',default='default.png')
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 
@@ -54,13 +54,19 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 # #this relation contain experience info refers to the particuler Facilitator
 class Experience(models.Model):
+    REXP=(('A', '3-6 yrs'),
+        ('B', '6-10 yrs'),
+        ('C', '10+ yrs'),)
+    TEXP=(('A', '3-6 yrs'),
+        ('B', '6-10 yrs'),
+        ('C', '10+ yrs'),)
     Eid=models.AutoField(primary_key=True)
     Linkedin_Url= models.URLField(max_length=250)
     Website_Url= models.URLField(max_length=250)
     Youtube_Url= models.URLField(max_length=250)
-    RExperience=models.TextField()
-    TExperience=models.TextField()
-    facilitator= models.OneToOneField(User, on_delete=models.CASCADE)
+    RExperience=models.CharField(max_length=1,choices=REXP)
+    TExperience=models.CharField(max_length=1,choices=TEXP)
+    facilitator= models.OneToOneField(User, on_delete=models.CASCADE,null=True)
 
 # #this table contain all the categories
 # class Category(models.Model):
@@ -96,13 +102,14 @@ class Experience(models.Model):
 
 # #this realtion contains all the quries to the particuler facilitator
 class FacilitatorQueries(models.Model):
-    STATUS=(('R','Resolved'),('D','Doubt'))
+    STATUS=(('Resolved','Resolved'),('Doubt','Doubt'))
     Qid=models.AutoField(primary_key=True)
     query=models.TextField(blank=True,null=True)
-    status=models.CharField(max_length=1,choices=STATUS,null=False,default="Doubt")
-    user= models.ForeignKey(User, on_delete=models.CASCADE)
+    status=models.CharField(max_length=10,choices=STATUS,default="Doubt")
+    user= models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     def __str__(self):
-        return self.query
+        return self.status
+
 
 # #this relation contains all the answer releted to particuler question
 # class FacilitatorQueriesAnswer(models.Model):

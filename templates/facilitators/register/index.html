@@ -153,7 +153,7 @@ body {
 <div class="container">
     <div class="row">
         <div class="col-md-7" id="facilitator-form">
-            <form id="msform" method="POST"  action="{% url 'facilitator-register' %}" >
+            <form id="msform" method="POST" enctype="multipart/form-data" action="{% url 'facilitator-register' %}" >
                     {% csrf_token %}
                 <ul id="progressbar">
                     <li class="active">Personal Details</li>
@@ -163,6 +163,8 @@ body {
                 </ul>
 
     <fieldset>
+ <h3 class="text-left mb-1">Personal Details</h3>
+<h6 class="text-left mb-2" style="color: #757575">Fill Your Details</h6>
 {% for hidden_field in form.hidden_fields %}
     {{ hidden_field }}
   {% endfor %}
@@ -191,6 +193,15 @@ body {
           {% render_field field class="form-control is-valid" %}
         {% endif %}
       {% else %}
+      <div class="form-row">
+      {% if field.name is "first_name"%}
+                 {% render_field field class="form-control col-md-6" placeholder=field.name %}
+        {% endif %}
+         {% if field.name is "last_name"%}
+                 {% render_field field class="form-control col-md-6" placeholder=field.name %}
+        {% endif %}
+        </div>
+
         {% render_field field class="form-control" placeholder=field.name %}
       {% endif %}
 
@@ -199,13 +210,154 @@ body {
       {% endif %}
     </div>
   {% endfor %}
-                    <input type="submit" name="submit" id="submitbtn" class="submit action-button btn-success" value="Submit"/>
 
 
-                    <input type="button" name="next" class="next action-button btn-primary" value="Next"/>
+
+
+
+   
+
+
+<input type="button" name="next" class="next action-button btn-primary" value="Next"/>
+
                 </fieldset>
+      <fieldset>
+             <h3 class="text-left mb-1">Experience</h3>
+            <h6 class="text-left mb-2" style="color: #757575">Share your experience</h6>
 
-            </form>
+           {% for hidden_field in expform.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  {% if expform.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in expform.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% for field in expform.visible_fields %}
+    <div class="form-group">
+      
+
+      {% if expform.is_bound %}
+        {% if field.errors %}
+          {% render_field field class="form-control is-invalid"  %}
+          {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field field class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field field class="form-control" placeholder=field.name %}
+      {% endif %}
+
+      {% if field.errors %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+   <div class="form-group">
+        <input type="tel" class="form-control" id="exampleInputPhone" name="phone" placeholder="Phone Number">
+    </div>
+  <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+
+<input type="button" name="next" class="next action-button btn-primary" value="Next"/>  
+                   
+            </fieldset>
+
+            {% comment %} <fieldset>
+        {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      
+
+      {% if form.is_bound %}
+        {% if field.errors %}
+          {% render_field field class="form-control is-invalid"  %}
+          {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field field class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+              
+        {% render_field field class="form-control" placeholder=field.name %}
+      {% endif %}
+
+      {% if field.errors %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+                  <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                    <input type="button" name="next" class="next action-button btn-primary" value="Next"/>   
+            </fieldset> {% endcomment %}
+
+  <fieldset>
+<h3 class="text-center mb-2">Ask your question</h3>
+{% for hidden_field in fquery.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  {% if fquery.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in fquery.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% for field in fquery.visible_fields %}
+    <div class="form-group">
+      
+
+      {% if fquery.is_bound %}
+        {% if field.errors %}
+          {% render_field field class="form-control is-invalid"  %}
+          {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field field class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field field class="form-control" style="height:5em;" placeholder=field.name %}
+      {% endif %}
+
+      {% if field.errors %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+   <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                   
+    <input type="submit" name="submit" class="submit action-button btn-success" value="Submit"/>
+          
+                   
+                   </fieldset>
+
+            </form> 
         </div>
     </div>
 </div>
