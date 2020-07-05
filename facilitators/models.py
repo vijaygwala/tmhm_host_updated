@@ -19,6 +19,7 @@ class Profile(models.Model):
     phone=models.CharField(max_length=13,blank=False)
     portfolio = models.FileField(upload_to ='uploads/')
     profile=models.ImageField(upload_to ='Mentor_profiles/',default='default.png')
+    intrest=models.CharField(max_length=250)
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
 

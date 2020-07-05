@@ -259,19 +259,24 @@ from django.views.generic import CreateView
 
 class RegisterLoginView(CreateView):
     def get(self, request, *args, **kwargs):
-        context = {'form': UserForm(),'pform':ProfileForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm()}
+        context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm()}
         return render(request, 'facilitators/register/index.html', context)
 
     def post(self, request, *args, **kwargs):
         form = UserForm(request.POST)
         expform = ExperienceForm(request.POST)
         phone=request.POST.get('phone','')
+        portfolio = request.FILES['pro']
         fquery=FacilitatorQueriesForm(request.POST)
+        course=request.POST.get('course','')
         user=None
-        if form.is_valid():#and profile_form.is_valid():
+        if form.is_valid():
            user=form.save()
            profile=Profile.objects.get(user=user.id)
            profile.phone=phone
+           profile.portfolio=portfolio
+           profile.role=2
+           profile.intrest=course
            profile.save()
        
 

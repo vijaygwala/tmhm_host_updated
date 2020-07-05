@@ -212,7 +212,9 @@ body {
   {% endfor %}
 
 
-
+<div class="form-group">
+        <input type="tel" class="form-control" id="exampleInputPhone" name="phone" placeholder="Phone Number">
+    </div>
 
 
    
@@ -261,56 +263,78 @@ body {
       {% endif %}
     </div>
   {% endfor %}
-   <div class="form-group">
-        <input type="tel" class="form-control" id="exampleInputPhone" name="phone" placeholder="Phone Number">
-    </div>
+   
+    <div class="form-group">
+                        <div class="custom-file">
+                            <label class="custom-file-label text-left" for="customFile">Upload Profile</label>
+                            <input type="file" class="custom-file-input" name="pro" id="customFile" title="Attach resume in doc/pdf format" accept=".pdf,.doc" >
+                        </div>
+                    </div>
+
   <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
 
 <input type="button" name="next" class="next action-button btn-primary" value="Next"/>  
                    
             </fieldset>
 
-            {% comment %} <fieldset>
-        {% for hidden_field in form.hidden_fields %}
-    {{ hidden_field }}
-  {% endfor %}
+        <fieldset>
+         <h3 class="text-left mb-1">Course Categories</h3>
+                    <h6 class="text-left mb-3" style="color: #757575">Choose your course</h6>
 
-  {% if form.non_field_errors %}
-    <div class="alert alert-danger" role="alert">
-      {% for error in form.non_field_errors %}
-        {{ error }}
-      {% endfor %}
-    </div>
-  {% endif %}
-
-  {% for field in form.visible_fields %}
-    <div class="form-group">
-      
-
-      {% if form.is_bound %}
-        {% if field.errors %}
-          {% render_field field class="form-control is-invalid"  %}
-          {% for error in field.errors %}
-            <div class="invalid-feedback">
-              {{ error }}
-            </div>
-          {% endfor %}
-        {% else %}
-          {% render_field field class="form-control is-valid" %}
-        {% endif %}
-      {% else %}
-              
-        {% render_field field class="form-control" placeholder=field.name %}
-      {% endif %}
-
-      {% if field.errors %}
-        <small class="form-text text-muted">{{ field.help_text }}</small>
-      {% endif %}
-    </div>
-  {% endfor %}
+                    <div class="form-group">
+                        <select class="selectpicker" multiple title="Choose Your Course" name="course" id="choose-category" data-live-search="true">
+                            <optgroup label="Business">
+                                <option value="Human Resources">Human Resources</option>
+                                <option value="Finance and Accounting">Finance and Accounting</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Trading">Trading</option>
+                            </optgroup>
+                            <optgroup label="It and Software">
+                                <option value="Web Development">Web Development</option>
+                                <option value="Mobile Development">Mobile Development</option>
+                                <option value="Data Science">Data Science</option>
+                                <option value="Programming Languages">Programming Languages</option>
+                                <option value="Database Tools">Database Tools</option>
+                            </optgroup>
+                            <optgroup label="Office Tools">
+                                <option value="Advance Tools">Advance Tools</option>
+                                <option value="CAD/CAM">CAD/CAM</option>
+                                <option value="Tally">Tally</option>
+                            </optgroup>
+                            <optgroup label="Creative Tools">
+                                <option value="Photography">Photography</option>
+                                <option value="Vediography">Vediography</option>
+                                <option value="Web/ Visual/ Game Design">Web/ Visual/ Game Design</option>
+                                <option value="Musical Instruments">Musical Instruments</option>
+                                <option value="Vocal">Vocal</option>
+                                <option value="Dance">Dance</option>
+                                <option value="Doodling">Doodling</option>
+                                <option value="DIY/ LI">DIY/ LI</option>
+                                <option value="Content Writing">Content Writing</option>
+                            </optgroup>
+                            <optgroup label="Personality Development">
+                                <option value="NLP">NLP</option>
+                                <option value="Personal Finance">Personal Finance</option>
+                                <option value="Stress Management">Stress Management</option>
+                                <option value="Cope Up VUCA World">Cope Up VUCA World</option>
+                                <option value="Languages">Languages</option>
+                                <option value="Business Communication">Business Communication</option>
+                            </optgroup>
+                            <optgroup label="Solopreneurship">
+                                <option value="SetUp Solopreneurship">SetUp Solopreneurship</option>
+                                <option value="Personal Branding">Personal Branding</option>
+                                <option value="Blog Writing">Blog Writing</option>
+                                <option value="Wordpress/ Website">Wordpress/ Website</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                  
+                  
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                     <input type="button" name="next" class="next action-button btn-primary" value="Next"/>   
-            </fieldset> {% endcomment %}
+            </fieldset> 
 
   <fieldset>
 <h3 class="text-center mb-2">Ask your question</h3>
