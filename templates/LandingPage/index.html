@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load socialaccount %}
 <html>
 {% load static %}
 
@@ -224,12 +225,18 @@
                         <button class="btn my-sm-0" type="submit" style="color: black;s"><i class="fa fa-search"></i></button>
                     </form>
                 </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <p>Welcome, {{ user.username }} !</p>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal" style="padding-left: 0;">Login</a>
                 </li>
                 <li class="nav-item">
                     <a href="/signup" class="btn btn-primary rounded" style="color: white">Sign Up</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -246,7 +253,7 @@
       </div>
       <div class="modal-body">
         <div class="text-center">
-            <button type="submit" class="btn btn-light border border-light ml-2 mt-1" style="font-size: 10px;"><img src="{% static 'LandingPage/img/google.svg' %}" style="width: 20px; height: 20px; margin-right: 2px"> Sign in with Google</button>
+            <a  href="{% provider_login_url 'google' %}" class="btn btn-light border border-light ml-2 mt-1" style="font-size: 10px;"><img src="{% static 'LandingPage/img/google.svg' %}" style="width: 20px; height: 20px; margin-right: 2px"> Sign in with Google</a>
         </div> 
         <p class="mt-2 text-center"><img src="{% static 'LandingPage/img/line2.png' %}">&nbsp;<b>or</b>&nbsp;<img src="{% static 'LandingPage/img/line2.png' %}"></p>
         <form style="padding-right: 80px; padding-left: 80px;">
