@@ -55,10 +55,12 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 # #this relation contain experience info refers to the particuler Facilitator
 class Experience(models.Model):
-    REXP=(('A', '3-6 yrs'),
+    REXP=(('', 'Relative Experience'),
+        ('A', '3-6 yrs'),
         ('B', '6-10 yrs'),
         ('C', '10+ yrs'),)
-    TEXP=(('A', '3-6 yrs'),
+    TEXP=(('', 'Total Experience'),
+        ('A', '3-6 yrs'),
         ('B', '6-10 yrs'),
         ('C', '10+ yrs'),)
     Eid=models.AutoField(primary_key=True)

@@ -14,37 +14,32 @@ class UserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ( 'first_name', 'last_name','username', 'email', 'password1', 'password2' )
+    def save(self, commit = True): 
+        user = super(UserForm, self).save(commit = False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
     
      
-# class FacilitatorForm(ModelForm):
-#     class Meta:
-#         model = Facilitator
-#         fields = ('name', 'phone')
 class ExperienceForm(ModelForm):
     class Meta:
         model = Experience
         fields = ['Linkedin_Url', 'Website_Url', 'Youtube_Url','RExperience','TExperience']
+    def __init__(self, *args, **kwargs):
+        super(ExperienceForm, self).__init__(*args, **kwargs)
+        self.fields['Linkedin_Url'].widget.attrs.update({'placeholder': 'Linkedin Url'})
+        self.fields['Website_Url'].widget.attrs.update({'placeholder': 'Website Url'})
+        self.fields['Youtube_Url'].widget.attrs.update({'placeholder': 'Youtube Url'})
+        
 
 class FacilitatorQueriesForm(ModelForm):
     class Meta:
         model=FacilitatorQueries
         fields=('query',)
-# # class FacilitatorEditProfileForm(UserChangeForm):
-
-# #     class Meta:
-# #         model = User
-# #         fields = (
-# #             'email',
-# #             'first_name',
-# #             'last_name',
-# #             'password',
-# #             )
-
-# class UserForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ('first_name', 'last_name', 'email','username')
-
+    def __init__(self, *args, **kwargs):
+        super(FacilitatorQueriesForm, self).__init__(*args, **kwargs)
+        self.fields['query'].widget.attrs.update({'placeholder': 'Ask Your Question'})
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile

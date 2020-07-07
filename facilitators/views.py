@@ -111,198 +111,66 @@ def facilitator_page(request):
 # #             return render(request, self.template_name, context)
 
 
-# # def register(request):
-# #     context={}
-# #     if request.method=='POST':
-       
-# # class RegisterLoginView(View):
-# #     template_name = 'facilitators/register/index.html'
-# #     context={}
-# #     def get(self, request):
-# #         facilitatorForm = FacilitatorForm()
-# #         userForm=FacilitatorRegistrationForm()
-# #         experienceForm=ExperienceForm()
-# #         context={
-# #             'facilitatorForm':facilitatorForm,
-# #             'userForm':userForm,
-# #             'experienceForm': experienceForm
-# #         }
-
-# #         return render(request, self.template_name,context)
-
-# #     def post(self, request):
-        
-# #         data = request.POST.copy()
-# #         data['name'] = data['first_name']+" "+data['last_name']
-                                   
-# #         facilitatorForm = FacilitatorForm(data)
-# #         userForm=FacilitatorRegistrationForm(request.POST)
-
-        
-# #         experienceForm=ExperienceForm(data)
-    
-# #         user=None
-# #         qo=None
-# #         exp=None
-# #         facilitator=None
-# #         if userForm.is_valid():  
-# #             user=userForm.save()
-# #         else:
-# #             print("invalid user form")
-# #         if facilitatorForm.is_valid():
-        
-# #             facilitator=facilitatorForm.save(commit=False)
-# #             facilitator.user=user
-# #             facilitator.save()
-# #         else:
-# #             print("invalid facilitator form")
-       
-# #         if experienceForm.is_valid():      
-# #             exp=experienceForm.save(commit=False)
-# #             exp.facilitator=facilitator
-# #             exp.save()
-# #         else :
-# #             print("invalid experience form")
-# #         query=data.POST.get('query',None)
-        
-# #         if query!=None:
-# #             qo=FacilitatorQueries(query=query,Fid=facilitator)
-# #             qo.save()
-            
-# #         else :
-# #             print("there is no  query")
-        
-# #         #FacilitatorAuthentication(userForm,request)
-
-        
-
-# #         return render(request, self.template_name,context)
-
-# class RegisterLoginView(View):
-#     template_name = 'facilitators/register/index.html'
-    
-#     def get(self, request):
-#         context={}
-#         form=UserCreationForm()
-#         return render(request, self.template_name,context={'form':form})
-
-#     def post(self,request):
-#         context={}
-#         fname = request.POST.get("first_name")
-#         lname = request.POST.get("last_name")
-#         email = request.POST.get("email")
-#         phone = request.POST.get("phone")
-#         password = request.POST.get("password1")
-#         confirm_password = request.POST.get("password2")
-#         portfolio = request.POST.get("portfolio")
-#         linkedinprofile = request.POST.get("Linkedin_Url")
-#         blogurl = request.POST.get("Website_Url")
-#         youtubechannel = request.POST.get("Youtube_Url")
-#         rexp = request.POST.get("RExperience")
-#         texp=request.POST.get("TExperience")
-#         query=request.POST.get("query",None)
-#         if password != confirm_password:
-#             messages.error(request, "confirm passowrd not matches with password entered")
-#             return HttpResponseRedirect("/facilitator-register")
-
-        
-#         form=UserCreationForm(request.POST)
-#         try:
-#             if form.is_valid():
-#                 form.save()
-#                 username = form.cleaned_data.get('username')
-#                 raw_password = form.cleaned_data.get('password1')
-#                 user = authenticate(username=username, password=raw_password)
-#                 login(request, user)
-#         except:
-#             messages.error(request, "something went wrong with userform regirstration")
-
-#         try:
-#             facilitator=Facilitator(name=fname+lname,phone=phone,portfolio=portfolio,user=request.user)
-#             facilitator.save()
-#         except:
-#             messages.error(request, "something went wrong with facilitator regirstration")
-#         try:
-#             exp=Experience(Linkedin_Url=linkedinprofile, Website_Url=blogurl,Youtube_Url=youtubechannel,RExperience=rexp,TExperience=texp,facilitator=facilitator)
-#             exp.save()
-#         except:
-#             messages.error(request,"something went wrong with experience regirstration")
-#         try:
-#             if query!=None:
-#                 qo=FacilitatorQueries(query=query,Fid=facilitator.Fid)
-#                 qo.save()
-#         except:
-#             messages.error(request,"something went wrong with query regirstration")
-        
-#         return render(request,'facilitators/index.html', context)
-
-# class RegisterLoginView(View):
-#     template_name = 'facilitators/register/index.html'
-    
-#     def get(self, request):
-    
-#         user_form = UserForm()
-#         profile_form = ProfileForm()
-#         return render(request, self.template_name,context={'form':user_form,'profile_form':profile_form})
-
-#     def post(self,request):
-#         if request.method == 'POST':
-#             user_form = UserForm(request.POST)
-#             profile_form = ProfileForm(request.POST)
-#             if user_form.is_valid() :#and profile_form.is_valid():
-#                 user_form.save()
-#                 #profile_form.save()
-#                 messages.success(request, ('Your profile was successfully updated!'))
-#                 return HttpResponseRedirect('facilitators/index.html')
-#             else:
-#                 messages.error(request, ('Please correct the error below.'))
-     
-#             return render(request, 'facilitators/index.html')   
 
     
 from django.views.generic import CreateView
 
 class RegisterLoginView(CreateView):
     def get(self, request, *args, **kwargs):
-        personal_detail={'first_name':'First name','last_name':'Last name','username':'Username','password1':'Password','passowrd2':'Confirm Password'}
-        context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm(),'place':personal_detail}
+        context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm()}
         return render(request, 'facilitators/register/index.html', context)
 
     def post(self, request, *args, **kwargs):
+        context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm()}
         form = UserForm(request.POST)
         expform = ExperienceForm(request.POST)
         phone=request.POST.get('phone','')
         portfolio = request.FILES['pro']
         fquery=FacilitatorQueriesForm(request.POST)
-        course=request.POST.get('course','')
+        course=request.POST.getlist('course','')
+        catlist=""
+        for cat in course:
+            catlist+=cat+","
+        print(course)
         user=None
-        if form.is_valid():
-           user=form.save()
-           profile=Profile.objects.get(user=user.id)
-           profile.phone=phone
-           profile.portfolio=portfolio
-           profile.role=2
-           profile.intrest=course
-           profile.save()
+        try:
+            if form.is_valid():
+                user=form.save()
+                profile=Profile.objects.get(user=user.id)
+                profile.phone=phone
+                profile.portfolio=portfolio
+                profile.role=2
+                profile.intrest=catlist
+                profile.save()
+            else:
+                raise form.ValidationError("something went wrong !")
+        except:
+            messages.error(request, ('Something went Wrong !'))
+
+            return render(request, 'facilitators/register/index.html',context)
+       
+        try:
+            if expform.is_valid():
+                ex=expform.save(commit=False)
+                ex.facilitator=user
+                ex.save()
+            else:
+                raise expform.ValidationError("something went wrong !")
+        except:
+            messages.error(request, ('Something went Wrong !'))
+
+            return render(request, 'facilitators/register/index.html',context)
+        try:
+            if fquery.is_valid():
+                qo=fquery.save(commit=False)
+                qo.user=user
+                qo.save()
+            else:
+                raise fquery.ValidationError("something went wrong !")
+        except:
+            messages.error(request, ('Something went Wrong !'))
+            return render(request, 'facilitators/register/index.html',context)
        
 
-        if expform.is_valid():
-            ex=expform.save(commit=False)
-            ex.facilitator=user
-            ex.save()
-
-        if fquery.is_valid():
-            qo=fquery.save(commit=False)
-            qo.user=user
-            qo.save()
-        
-       
-        
-        
-        #     #profile_form.save()
-        #     messages.success(request, ('Your profile was successfully updated!'))
-        #     return render(request, 'facilitators/index.html')
-        # else:
-        #     messages.error(request, ('Please correct the error below.'))
-     
-        return render(request, 'facilitators/index.html')
+        messages.success(request, ('Your profile was successfully Created!'))
+        return render(request, 'facilitators/register/index.html',context)
