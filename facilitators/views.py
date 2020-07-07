@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from facilitators.models import *
 from facilitators.forms import *
 from django.contrib.auth import authenticate,login
@@ -146,8 +146,8 @@ class RegisterLoginView(CreateView):
                 raise form.ValidationError("something went wrong !")
         except:
             messages.error(request, ('Something went Wrong !'))
-
-            return render(request, 'facilitators/register/index.html',context)
+            return redirect('facilitator-register')
+            
        
         try:
             if expform.is_valid():
@@ -158,8 +158,8 @@ class RegisterLoginView(CreateView):
                 raise expform.ValidationError("something went wrong !")
         except:
             messages.error(request, ('Something went Wrong !'))
-
-            return render(request, 'facilitators/register/index.html',context)
+            return redirect('facilitator-register')
+            
         try:
             if fquery.is_valid():
                 qo=fquery.save(commit=False)
@@ -169,8 +169,8 @@ class RegisterLoginView(CreateView):
                 raise fquery.ValidationError("something went wrong !")
         except:
             messages.error(request, ('Something went Wrong !'))
-            return render(request, 'facilitators/register/index.html',context)
+            return redirect('facilitator-register')
        
 
         messages.success(request, ('Your profile was successfully Created!'))
-        return render(request, 'facilitators/register/index.html',context)
+        return redirect('facilitator-register')
