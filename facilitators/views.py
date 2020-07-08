@@ -159,7 +159,8 @@ class RegisterLoginView(CreateView):
         except:
             messages.error(request, ('Something went Wrong !'))
             return redirect('facilitator-register')
-            
+
+
         try:
             if fquery.is_valid():
                 qo=fquery.save(commit=False)
