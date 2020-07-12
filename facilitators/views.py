@@ -114,11 +114,16 @@ def facilitator_page(request):
 
     
 from django.views.generic import CreateView
+from .mixins import AjaxFormMixin
+def signup(request):
+    context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm()}
+    return render(request, 'facilitators/register/mysignup.html',context)
 
-class RegisterLoginView(CreateView):
+
+class RegisterLoginView(AjaxFormMixin,View):
     def get(self, request, *args, **kwargs):
         context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm()}
-        return render(request, 'facilitators/register/index.html', context)
+        return render(request, 'facilitators/register/mysignup.html', context)
 
     def post(self, request, *args, **kwargs):
         context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm()}
@@ -160,17 +165,17 @@ class RegisterLoginView(CreateView):
             messages.error(request, ('Something went Wrong !'))
             return redirect('facilitator-register')
 
-
-        try:
-            if fquery.is_valid():
-                qo=fquery.save(commit=False)
-                qo.user=user
-                qo.save()
-            else:
-                raise fquery.ValidationError("something went wrong !")
-        except:
-            messages.error(request, ('Something went Wrong !'))
-            return redirect('facilitator-register')
+        if fquery!=None:
+            try:
+                if fquery.is_valid():
+                    qo=fquery.save(commit=False)
+                    qo.user=user
+                    qo.save()
+                else:
+                    raise fquery.ValidationError("something went wrong !")
+            except:
+                messages.error(request, ('Something went Wrong !'))
+                return redirect('facilitator-register')
        
 
         messages.success(request, ('Your profile was successfully Created!'))
