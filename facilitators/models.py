@@ -1,33 +1,9 @@
-from django.contrib.auth.models import User
+from myauth.models import *
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-class Profile(models.Model):
-    LEARNER = 1
-    FACILITATOR = 2
-    ADMIN = 3
-    ROLE_CHOICES = (
-        (LEARNER, 'Learner'),
-        (FACILITATOR, 'Facilitator'),
-        (ADMIN, 'Admin'),
-    )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    Address = models.CharField(max_length=30, blank=True)
-    DOB = models.DateField(null=True, blank=True)
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
-    phone=models.CharField(max_length=13,blank=False)
-    portfolio = models.FileField(upload_to ='uploads/')
-    profile=models.ImageField(upload_to ='Mentor_profiles/',default='default.png')
-    intrest=models.CharField(max_length=250)
-    def __str__(self):  # __unicode__ for Python 2
-        return self.user.username
 
-@receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-    instance.profile.save()
 
 
 
@@ -69,7 +45,7 @@ class Experience(models.Model):
     Youtube_Url= models.URLField(max_length=250)
     RExperience=models.CharField(max_length=1,choices=REXP)
     TExperience=models.CharField(max_length=1,choices=TEXP)
-    facilitator= models.OneToOneField(User, on_delete=models.CASCADE,null=True)
+    facilitator= models.OneToOneField(CustomUser, on_delete=models.CASCADE,null=True)
 
 # #this table contain all the categories
 # class Category(models.Model):
@@ -109,7 +85,7 @@ class FacilitatorQueries(models.Model):
     Qid=models.AutoField(primary_key=True)
     query=models.TextField(blank=True,null=True)
     status=models.CharField(max_length=10,choices=STATUS,default="Doubt")
-    user= models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    user= models.ForeignKey(CustomUser, on_delete=models.CASCADE,null=True)
     def __str__(self):
         return self.status
 

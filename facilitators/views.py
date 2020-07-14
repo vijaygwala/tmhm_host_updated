@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.template.defaulttags import register
+from LandingPage.models import *
 
 @register.filter
 def get_item(dictionary, key):
@@ -122,7 +123,9 @@ def signup(request):
 
 class RegisterLoginView(AjaxFormMixin,View):
     def get(self, request, *args, **kwargs):
-        context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm()}
+        category=Category.objects.all()
+        subcategory=SubCategory.objects.all()
+        context = {'form': UserForm(),'expform':ExperienceForm(),'fquery':FacilitatorQueriesForm(),'category':category,'subcategory':subcategory}
         return render(request, 'facilitators/register/mysignup.html', context)
 
     def post(self, request, *args, **kwargs):

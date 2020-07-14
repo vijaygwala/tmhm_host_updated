@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from  facilitators.models import *
-from django.contrib.auth.models import User
+from myauth.models import *
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
@@ -12,8 +12,8 @@ class UserForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
 
     class Meta:
-        model = User
-        fields = ( 'first_name', 'last_name','username', 'email', 'password1', 'password2' )
+        model = CustomUser
+        fields = ( 'first_name', 'last_name', 'email', 'password1', 'password2' )
     def save(self, commit = True): 
         user = super(UserForm, self).save(commit = False)
         user.set_password(self.cleaned_data["password1"])

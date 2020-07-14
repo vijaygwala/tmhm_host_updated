@@ -57,8 +57,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    # endVijay
     'widget_tweaks',
+    'myauth',
+    # endVijay
+    
+
 ]
 # for go
 # By vijay
@@ -180,6 +183,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+AUTH_USER_MODEL = 'myauth.CustomUser'
 
 
 # Static files (CSS, JavaScript, Images)
