@@ -59,11 +59,21 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'widget_tweaks',
     'myauth',
+    'rest_framework',
+    'knox',
     # endVijay
     
 
 ]
-# for go
+# by vijay
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
+}
+# endvijay
 # By vijay
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
@@ -102,15 +112,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'tmhm_host.wsgi.application'
 # By vijay
 ''' for google authentication integration '''
-AUTHENTICATION_BACKENDS = [
+# AUTHENTICATION_BACKENDS = [
     
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     'django.contrib.auth.backends.ModelBackend',
 
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
+#     # `allauth` specific authentication methods, such as login by e-mail
+#     'allauth.account.auth_backends.AuthenticationBackend',
 
-]
+# ]
 # endVijay
 
 

@@ -1,5 +1,6 @@
 from django.db import models
 from myauth.models import *
+from facilitators.models import *
 # Create your models here.
 from django.db.models.signals import post_delete
 #from django.dispatch import receive
@@ -32,10 +33,10 @@ class Course(models.Model):
 
 #this relation associate a particuler facilitator with particuler course
 class offer(models.Model):
-    Fid = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    Fid = models.ForeignKey(Facilitator, on_delete=models.CASCADE)
     Cid = models.ForeignKey(Course, on_delete=models.CASCADE)
     def __str__(self):
-        return self.name
+        return self.Fid.name
 
 # class contact(models.Model):
 #     msg_id = models.AutoField(primary_key=True)
