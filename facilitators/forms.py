@@ -39,7 +39,7 @@ class FacilitatorQueriesForm(ModelForm):
         fields=('query',)
     def __init__(self, *args, **kwargs):
         super(FacilitatorQueriesForm, self).__init__(*args, **kwargs)
-        self.fields['query'].widget.attrs.update({'placeholder': 'Ask Your Question'})
+        self.fields['query'].widget.attrs.update({'placeholder': 'Ask Your Question','id':'autoresizing'})
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile

@@ -11,9 +11,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.template.defaulttags import register
 from LandingPage.models import *
 
-@register.filter
-def get_item(dictionary, key):
-    return dictionary.get(key)
 
 
 
